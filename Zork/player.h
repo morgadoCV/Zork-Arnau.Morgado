@@ -6,6 +6,7 @@ class Player
 public:
 	char name[25];
 	char description[140];
+	int situation;
 };
 
 

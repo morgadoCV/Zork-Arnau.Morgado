@@ -19,7 +19,7 @@ public:
 	~World();
 };
 
-
+enum roooms{starting,floor1,floor2,floor3,lowlevel,requirements,darkarts,darkwizard,bathroom,secrets,transformation};
 
 
 #endif

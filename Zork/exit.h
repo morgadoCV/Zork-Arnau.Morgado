@@ -6,8 +6,7 @@ class Exit
 public:
 	char name[25];
 	char description[140];
-	char source[50];
-	char destination[50];
+	int destiny,destiny2,destiny3,destiny4;
 };
 
 
