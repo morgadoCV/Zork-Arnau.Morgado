@@ -11,6 +11,7 @@ public:
 	Player* my_player=nullptr;
 	Room* my_rooms=nullptr;
 	Exit* my_exits=nullptr;
+	int door=0,openfountain=0;
 	
 
 public:
@@ -21,6 +22,9 @@ public:
 	void moveWest();
 	void lookRooms();
 	void giveHelp();
+	void openDoor();
+	void closeDoor();
+	void talkParsel();
 	int checkImput();
 	World();
 	~World();

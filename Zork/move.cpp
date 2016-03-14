@@ -17,29 +17,53 @@ int World::checkImput()
 		moveNorth();
 		return 0;
 	}
-	if (strcmp("go south", userinput) == 0)
+	else if (strcmp("go south", userinput) == 0)
 	{
 		moveSouth();
 		return 0;
 	}
-	if (strcmp("go east", userinput) == 0)
+	else if (strcmp("go east", userinput) == 0)
 	{
 		moveEast();
 		return 0;
 	}
-	if (strcmp("go west", userinput) == 0)
+	else if (strcmp("go west", userinput) == 0)
 	{
 		moveWest();
 		return 0;
 	}
-	if (strcmp("look", userinput) == 0)
+	else if (strcmp("look", userinput) == 0)
 	{
 		lookRooms();
 		return 0;
 	}
-	if (strcmp("help", userinput) == 0)
+	else if (strcmp("help", userinput) == 0)
 	{
 		giveHelp();
+		return 0;
+	}
+	else if (strcmp("quit", userinput) == 0)
+	{
+		return 1;
+	}
+	else if (strcmp("open", userinput) == 0)
+	{
+		openDoor();
+		return 0;
+	}
+	else if (strcmp("close", userinput) == 0)
+	{
+		closeDoor();
+		return 0;
+	}
+	else if (strcmp("talk parsel", userinput) == 0)
+	{
+		talkParsel();
+		return 0;
+	}
+	else
+	{
+		printf("\nWrong command.\n");
 		return 0;
 	}
 }
@@ -110,9 +134,15 @@ void World::moveSouth()
 	}
 	else if (my_player[0].situation == bathroom)
 	{
-		my_player[0].situation = my_exits[bathroom].destiny;
-		printf("\n%s\n%s\n", my_rooms[secrets].name, my_rooms[secrets].description);
-		return;
+		if (openfountain == 1){
+			my_player[0].situation = my_exits[bathroom].destiny;
+			printf("\n%s\n%s\n", my_rooms[secrets].name, my_rooms[secrets].description);
+			return;
+		}
+		if (openfountain == 0){
+			printf("\nThere is a high wall you can't climb.\n\n");
+			return;
+		}
 	}
 	else
 	{
@@ -132,9 +162,16 @@ void World::moveEast()
 	}
 	else if (my_player[0].situation == floor3)
 	{
-		my_player[0].situation = my_exits[floor3].destiny3;
-		printf("\n%s\n%s\n", my_rooms[darkarts].name, my_rooms[darkarts].description);
-		return;
+		if (door==1)
+		{
+			my_player[0].situation = my_exits[floor3].destiny3;
+			printf("\n%s\n%s\n", my_rooms[darkarts].name, my_rooms[darkarts].description);
+			return;
+		}
+		else if (door == 0)
+		{
+			printf("\nLa puerta esta cerrada.\n");
+		}
 	}
 	else if (my_player[0].situation == darkarts)
 	{
@@ -170,10 +207,19 @@ void World::moveWest()
 	}
 	else if (my_player[0].situation == darkarts)
 	{
-		my_player[0].situation = my_exits[darkarts].destiny2;
-		printf("\n%s\n%s\n", my_rooms[floor3].name, my_rooms[floor3].description);
-		return;
+		if (door == 1)
+		{
+			my_player[0].situation = my_exits[darkarts].destiny;
+			printf("\n%s\n%s\n", my_rooms[floor3].name, my_rooms[floor3].description);
+			return;
+		}
+		else if (door == 0)
+		{
+			printf("\nLa puerta está cerrada\n");
+			return;
+		}
 	}
+	
 	else if (my_player[0].situation == darkwizard)
 	{
 		my_player[0].situation = my_exits[darkwizard].destiny;
@@ -201,17 +247,17 @@ void World::moveWest()
 
 void World::lookRooms()
 {
-	if (my_player[0].situation == starting){ printf("\n%s\n", my_exits[starting].description); }
-	else if (my_player[0].situation == floor3){ printf("\n%s\n", my_exits[floor3].description); }
-	else if (my_player[0].situation == transformation){ printf("\n%s\n", my_exits[transformation].description); }
-	else if (my_player[0].situation == darkarts){ printf("\n%s\n", my_exits[darkarts].description); }
-	else if (my_player[0].situation == darkwizard){ printf("\n%s\n", my_exits[darkwizard].description); }
-	else if (my_player[0].situation == floor2){ printf("\n%s\n", my_exits[floor2].description); }
-	else if (my_player[0].situation == floor1){ printf("\n%s\n", my_exits[floor1].description); }
-	else if (my_player[0].situation == lowlevel){ printf("\n%s\n", my_exits[lowlevel].description); }
-	else if (my_player[0].situation == requirements){ printf("\n%s\n", my_exits[requirements].description); }
-	else if (my_player[0].situation == bathroom){ printf("\n%s\n", my_exits[bathroom].description); }
-	else if (my_player[0].situation == secrets){ printf("\n%s\n", my_exits[secrets].description); }
+	if (my_player[0].situation == starting) printf("\n%s\n", my_exits[starting].description); 
+	else if (my_player[0].situation == floor3) printf("\n%s\n", my_exits[floor3].description); 
+	else if (my_player[0].situation == transformation) printf("\n%s\n", my_exits[transformation].description); 
+	else if (my_player[0].situation == darkarts) printf("\n%s\n", my_exits[darkarts].description); 
+	else if (my_player[0].situation == darkwizard) printf("\n%s\n", my_exits[darkwizard].description); 
+	else if (my_player[0].situation == floor2) printf("\n%s\n", my_exits[floor2].description); 
+	else if (my_player[0].situation == floor1) printf("\n%s\n", my_exits[floor1].description); 
+	else if (my_player[0].situation == lowlevel) printf("\n%s\n", my_exits[lowlevel].description); 
+	else if (my_player[0].situation == requirements) printf("\n%s\n", my_exits[requirements].description); 
+	else if (my_player[0].situation == bathroom) printf("\n%s\n", my_exits[bathroom].description); 
+	else if (my_player[0].situation == secrets) printf("\n%s\n", my_exits[secrets].description); 
 }
 
 void World::giveHelp()
@@ -225,4 +271,60 @@ void World::giveHelp()
 	printf("\nUse command 'help' to get help.\n");
 	printf("\nUse command 'open' to open closed doors.\n");
 	printf("\nUse command 'close' to close the door you oppened.\n\n");
+}
+
+void World::openDoor()
+{
+	if (my_player[0].situation == floor3&&door==0)
+	{
+		printf("Puerta abierta\n");
+		door = 1;
+		
+	}
+	else if (my_player[0].situation == darkarts&&door==0)
+	{
+		printf("Puerta abierta\n");
+		door = 1;
+
+	}
+	else
+	{
+		printf("\nTodas las puertas estan abiertas\n");
+		
+	}
+}
+
+void World::closeDoor()
+{
+	if (my_player[0].situation == darkarts&&door==1){
+		printf("Puerta cerrada\n");
+		door = 0;
+		
+	}
+	else if (my_player[0].situation == floor3&&door==1)
+	{
+		printf("Puerta cerrada\n");
+		door = 0;
+
+	}
+	else
+	{
+		printf("\nTodas las puertas estan cerradas\n");
+		
+	}
+}
+
+void World::talkParsel()
+{
+	if (my_player[0].situation==bathroom)
+	{
+		if (openfountain == 0){
+			printf("\nThe fountain is moving...A door just opened on the fountain\n");
+			openfountain = 1;
+		}
+		else
+		{
+			printf("\nNothing happened\n");
+		}
+	}
 }

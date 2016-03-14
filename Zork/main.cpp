@@ -24,6 +24,7 @@ int main()
 		if (flag == 0){ continue; }
 		else{ exit = 0; }
 	}
+	printf("\nYou have quit.\n");
 
 
 	system("pause");
