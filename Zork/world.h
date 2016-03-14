@@ -15,6 +15,8 @@ public:
 
 public:
 	void createWorld();
+	void moveNorth();
+	void checkImput();
 	World();
 	~World();
 };

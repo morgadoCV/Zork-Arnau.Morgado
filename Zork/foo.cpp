@@ -12,19 +12,14 @@ World::World(){
 	my_exits = new Exit[12];
 
 } 
-World::~World()
-{
-	delete[]my_player;
-	delete[]my_exits;
-	delete[]my_rooms;
 
-}
+
 void World::createWorld()
 	{
 		//player
 		strcpy_s(my_player[0].name, "Unknown");
 	    strcpy_s(my_player[0].description, "As you would know you are at Hogwarts, School of Witchcraft and Wizary. We found you unconscious last night on the top of the north tower's steps, we don't know what happened to you..\n You are at the sickroom, you must investigate what happened to you, maybe a dark wizard is in the castle..");
-		
+		my_player[0].situation = starting;
 		//rooms
 		strcpy_s(my_rooms[starting].name, "Starting Room.\n");
 		strcpy_s(my_rooms[starting].description, "You can see a room when you look at east.There is a broom.\n");
@@ -87,5 +82,33 @@ void World::createWorld()
 		my_exits[transformation].destiny = lowlevel;
 	}
 
+void World::moveNorth(){
+	if (my_player[0].situation == starting)
+	{
+		my_player[0].situation = floor3;
+		printf("%s\n%s\n", my_rooms[floor3].name,my_rooms[floor3].description);
+		return;
+	}
+	if (my_player[0].situation == floor3)
+	{
+		
+	}
+}
 
+World::~World()
+{
+	delete[]my_player;
+	delete[]my_exits;
+	delete[]my_rooms;
+}
 
+void World::checkImput()
+{
+	char userinput[25];
+	printf("Where do you wanna go?\n");
+	gets_s(userinput);
+	if (strcmp("go north", userinput) == 0)
+	{
+		moveNorth();
+	}
+}

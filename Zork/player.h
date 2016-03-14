@@ -5,7 +5,7 @@ class Player
 {
 public:
 	char name[25];
-	char description[140];
+	char description[500];
 	int situation;
 };
 
