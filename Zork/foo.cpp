@@ -56,13 +56,13 @@ void World::createWorld()
 		strcpy_s(my_exits[darkarts].description, "West to 3rd Floor.\n");
 		strcpy_s(my_exits[darkwizard].description, "West to Dark Arts room.\n");
 		strcpy_s(my_exits[bathroom].description, "West to 2nd Floor.\n");
-		strcpy_s(my_exits[secrets].description, "West to Bathroom.\n");
+		strcpy_s(my_exits[secrets].description, "North to Bathroom.\n");
 		strcpy_s(my_exits[transformation].description, "West to Low Level.\n");
 		
 		//destiny of every room
 		my_exits[starting].destiny = floor3;
 		my_exits[floor3].destiny = starting;
-		my_exits[floor3].destiny2 = transformation;
+		my_exits[floor3].destiny2 = requirements;
 		my_exits[floor3].destiny3 = darkarts;
 		my_exits[floor3].destiny4 = floor2;
 		my_exits[requirements].destiny = floor3;
@@ -73,7 +73,7 @@ void World::createWorld()
 		my_exits[floor2].destiny2 = floor1;
 		my_exits[floor2].destiny3 = bathroom;
 		my_exits[bathroom].destiny = secrets;
-		my_exits[bathroom].destiny = floor2;
+		my_exits[bathroom].destiny2 = floor2;
 		my_exits[secrets].destiny = bathroom;
 		my_exits[floor1].destiny = floor2;
 		my_exits[floor1].destiny2 = lowlevel;
@@ -82,18 +82,6 @@ void World::createWorld()
 		my_exits[transformation].destiny = lowlevel;
 	}
 
-void World::moveNorth(){
-	if (my_player[0].situation == starting)
-	{
-		my_player[0].situation = floor3;
-		printf("%s\n%s\n", my_rooms[floor3].name,my_rooms[floor3].description);
-		return;
-	}
-	if (my_player[0].situation == floor3)
-	{
-		
-	}
-}
 
 World::~World()
 {
@@ -102,13 +90,3 @@ World::~World()
 	delete[]my_rooms;
 }
 
-void World::checkImput()
-{
-	char userinput[25];
-	printf("Where do you wanna go?\n");
-	gets_s(userinput);
-	if (strcmp("go north", userinput) == 0)
-	{
-		moveNorth();
-	}
-}

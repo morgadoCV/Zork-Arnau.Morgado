@@ -16,11 +16,6 @@ public:
 public:
 	void createWorld();
 	void moveNorth();
-	void moveSouth();
-	void moveEast();
-	void moveWest();
-	void lookRooms();
-	void giveHelp();
 	int checkImput();
 	World();
 	~World();

@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="foo.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="move.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="exit.h" />
