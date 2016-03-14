@@ -170,7 +170,7 @@ void World::moveEast()
 		}
 		else if (door == 0)
 		{
-			printf("\nLa puerta esta cerrada.\n");
+			printf("\nThe door is closed.\n");
 		}
 	}
 	else if (my_player[0].situation == darkarts)
@@ -215,7 +215,7 @@ void World::moveWest()
 		}
 		else if (door == 0)
 		{
-			printf("\nLa puerta está cerrada\n");
+			printf("\nThe door is closed.\n");
 			return;
 		}
 	}
@@ -277,19 +277,19 @@ void World::openDoor()
 {
 	if (my_player[0].situation == floor3&&door==0)
 	{
-		printf("Puerta abierta\n");
+		printf("Door opened.\n");
 		door = 1;
 		
 	}
 	else if (my_player[0].situation == darkarts&&door==0)
 	{
-		printf("Puerta abierta\n");
+		printf("Door opened.\n");
 		door = 1;
 
 	}
 	else
 	{
-		printf("\nTodas las puertas estan abiertas\n");
+		printf("\nAll doors are opened.\n");
 		
 	}
 }
@@ -297,19 +297,19 @@ void World::openDoor()
 void World::closeDoor()
 {
 	if (my_player[0].situation == darkarts&&door==1){
-		printf("Puerta cerrada\n");
+		printf("The door is closed.\n");
 		door = 0;
 		
 	}
 	else if (my_player[0].situation == floor3&&door==1)
 	{
-		printf("Puerta cerrada\n");
+		printf("The door is closed.\n");
 		door = 0;
 
 	}
 	else
 	{
-		printf("\nTodas las puertas estan cerradas\n");
+		printf("\nYou can't close any door.\n");
 		
 	}
 }
