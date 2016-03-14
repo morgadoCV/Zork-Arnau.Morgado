@@ -245,7 +245,7 @@ void World::moveWest()
 	}
 }
 
-void World::lookRooms()
+void World::lookRooms() const
 {
 	if (my_player[0].situation == starting) printf("\n%s\n", my_exits[starting].description); 
 	else if (my_player[0].situation == floor3) printf("\n%s\n", my_exits[floor3].description); 
@@ -260,7 +260,7 @@ void World::lookRooms()
 	else if (my_player[0].situation == secrets) printf("\n%s\n", my_exits[secrets].description); 
 }
 
-void World::giveHelp()
+void World::giveHelp() const
 {
 	system("cls");
 	printf("\nUse command 'go north' to move North.\n");

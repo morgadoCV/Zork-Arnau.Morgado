@@ -20,8 +20,8 @@ public:
 	void moveSouth();
 	void moveEast();
 	void moveWest();
-	void lookRooms();
-	void giveHelp();
+	void lookRooms() const;
+	void giveHelp() const;
 	void openDoor();
 	void closeDoor();
 	void talkParsel();
