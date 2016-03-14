@@ -38,7 +38,7 @@ void World::createWorld()
 		strcpy_s(my_rooms[darkwizard].name, "Dark wizard room.\n");
 		strcpy_s(my_rooms[darkwizard].description, "Is there a room here? Since when? A wizard is staring at you with his wand on \nthe right hand.\n");
 		strcpy_s(my_rooms[bathroom].name, "Bathroom\n");
-		strcpy_s(my_rooms[bathroom].description, "You found your friend Arnau. There is an old fountain with what seem snakes arround it.\n");
+		strcpy_s(my_rooms[bathroom].description, "You found your friend Arnau. There is an old fountain with what seem snakes \narround it.\n");
 		strcpy_s(my_rooms[secrets].name, "Chamber of Secrets.\n");
 		strcpy_s(my_rooms[secrets].description, "There is a BASILISK.There is also a book on the floor.\n");
 		strcpy_s(my_rooms[transformation].name, "Transformation room.\n ");
