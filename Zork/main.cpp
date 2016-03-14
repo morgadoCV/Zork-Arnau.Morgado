@@ -16,7 +16,7 @@ int main()
 	char userinput[25];
 	w.createWorld();
 	printf("Welcome to What happened last night\n");
-	printf("As you would know you are at Hogwarts, School of Witchcraft and Wizary. We found you unconscious last night on the top of the north tower's steps, we don't know what happened to you.. You are at the sickroom, you must investigate what happened to you, maybe a dark wizard is in the castle..\n\n");
+	printf("As you would know you are at Hogwarts, School of Witchcraft and Wizary. We found you unconscious last night on the top of the north tower's steps, we don't know what happened to you.. You are at the sickroom, you must investigate what\n happened to you, maybe a dark wizard is in the castle..\n\n");
 	
 	while (exit == 1)
 	{

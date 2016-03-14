@@ -26,7 +26,7 @@ void World::createWorld()
 		strcpy_s(my_rooms[floor3].name, "3rd Floor.\n");
 		strcpy_s(my_rooms[floor3].description, "There are stair going down on south and a closed room east, it seems very cold.\n");
 		strcpy_s(my_rooms[floor2].name, "2nd floor.\n");
-		strcpy_s(my_rooms[floor2].description, "You can go east to the bathroom and south downstairs to 1st floor.There is a lantern on the floor.\n");
+		strcpy_s(my_rooms[floor2].description, "You can go east to the bathroom and south downstairs to 1st floor.\nThere is a lantern on the floor.\n");
 		strcpy_s(my_rooms[floor1].name, "1st floor.\n");
 		strcpy_s(my_rooms[floor1].description, "There is a layer on the floor. The only way you can go is south, straight to the low level.\n");
 		strcpy_s(my_rooms[lowlevel].name, "Low Level.\n");
@@ -36,8 +36,8 @@ void World::createWorld()
 		strcpy_s(my_rooms[darkarts].name, "Dark arts room.\n ");
 		strcpy_s(my_rooms[darkarts].description, "There is an old painting of Salazar Slytherin. You can also see a wand over the table and a heavy layer behind the door.\n");
 		strcpy_s(my_rooms[darkwizard].name, "Dark wizard room.\n");
-		strcpy_s(my_rooms[darkwizard].description, "Is there a room here? Since when? A wizard is staring at you with his wand on the right hand.\n");
-		strcpy_s(my_rooms[bathroom].name, "Bathroom");
+		strcpy_s(my_rooms[darkwizard].description, "Is there a room here? Since when? A wizard is staring at you with his wand on \nthe right hand.\n");
+		strcpy_s(my_rooms[bathroom].name, "Bathroom\n");
 		strcpy_s(my_rooms[bathroom].description, "You found your friend Arnau. There is an old fountain with what seem snakes arround it.\n");
 		strcpy_s(my_rooms[secrets].name, "Chamber of Secrets.\n");
 		strcpy_s(my_rooms[secrets].description, "There is a BASILISK.There is also a book on the floor.\n");
