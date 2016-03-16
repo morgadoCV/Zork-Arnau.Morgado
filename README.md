@@ -14,3 +14,4 @@ Use the commands:
 "close"     -->close doors.
 "open"      -->open doors.
 "quit"      -->quit
+"talk parsel" -->use it while you are at the bathroom ;)
