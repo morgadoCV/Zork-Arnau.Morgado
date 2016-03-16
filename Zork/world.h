@@ -21,6 +21,10 @@ public:
 	void moveEast();
 	void moveWest();
 	void lookRooms() const;
+	void lookRoomsNorth()const;
+	void lookRoomsSouth()const;
+	void lookRoomsEast()const;
+	void lookRoomsWest()const;
 	void giveHelp() const;
 	void openDoor();
 	void closeDoor();

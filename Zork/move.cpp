@@ -12,22 +12,22 @@ int World::checkImput()
 	char userinput[25];
 	printf("What do you wanna do?\n");
 	gets_s(userinput);
-	if (strcmp("go north", userinput) == 0)
+	if (strcmp("go north", userinput) == 0 || strcmp("north", userinput) == 0 || strcmp("n", userinput) == 0)
 	{
 		moveNorth();
 		return 0;
 	}
-	else if (strcmp("go south", userinput) == 0)
+	else if (strcmp("go south", userinput) == 0 || strcmp("south", userinput) == 0 || strcmp("s", userinput) == 0)
 	{
 		moveSouth();
 		return 0;
 	}
-	else if (strcmp("go east", userinput) == 0)
+	else if (strcmp("go east", userinput) == 0 || strcmp("east", userinput) == 0 || strcmp("e", userinput) == 0)
 	{
 		moveEast();
 		return 0;
 	}
-	else if (strcmp("go west", userinput) == 0)
+	else if (strcmp("go west", userinput) == 0 || strcmp("west", userinput) == 0 || strcmp("w", userinput) == 0)
 	{
 		moveWest();
 		return 0;
@@ -35,6 +35,26 @@ int World::checkImput()
 	else if (strcmp("look", userinput) == 0)
 	{
 		lookRooms();
+		return 0;
+	}
+	else if (strcmp("look north", userinput) == 0)
+	{
+		lookRoomsNorth();
+		return 0;
+	}
+	else if (strcmp("look south", userinput) == 0)
+	{
+		lookRoomsSouth();
+		return 0;
+	}
+	else if (strcmp("look east", userinput) == 0)
+	{
+		lookRoomsEast();
+		return 0;
+	}
+	else if (strcmp("look west", userinput) == 0)
+	{
+		lookRoomsWest();
 		return 0;
 	}
 	else if (strcmp("help", userinput) == 0)
@@ -263,11 +283,12 @@ void World::lookRooms() const
 void World::giveHelp() const
 {
 	system("cls");
-	printf("\nUse command 'go north' to move North.\n");
-	printf("\nUse command 'go south' to move South.\n");
-	printf("\nUse command 'go east' to move East.\n");
-	printf("\nUse command 'go west' to move West.\n");
+	printf("\nUse command 'go north' or 'n' or 'north' to move North.\n");
+	printf("\nUse command 'go south' or 's' or 'south' to move South.\n");
+	printf("\nUse command 'go east' or 'e' or 'east' to move East.\n");
+	printf("\nUse command 'go west' or 'w' or 'west' to move West.\n");
 	printf("\nUse command 'look' get info of the room you are in.\n");
+	printf("\nUse command 'look' + 'north','south','east','west' to get info.\n");
 	printf("\nUse command 'help' to get help.\n");
 	printf("\nUse command 'open' to open closed doors.\n");
 	printf("\nUse command 'close' to close the door you oppened.\n\n");
@@ -332,3 +353,116 @@ void World::talkParsel()
 		printf("\nNothing happened\n\n");
 	}
 }
+
+void World::lookRoomsNorth()const
+{
+
+	if (my_player[0].situation == floor3)
+	{
+		printf("\nSeems like some time ago there was a door here.\n");
+	}
+	else if (my_player[0].situation == floor2)
+	{
+		printf("\nThere are some stairs going up.\n");
+	}
+	else if (my_player[0].situation == floor1)
+	{
+		printf("\nThere are some stairs going up.\n");
+	}
+	else if (my_player[0].situation == lowlevel)
+	{
+		printf("\nThere are some stairs going up.\n");
+	}
+	else if (my_player[0].situation == secrets)
+	{
+		printf("\nYou can see the fountain on the middle if the dark.\n");
+	}
+	else
+	{
+		printf("\nThere is a high wall you can't climb\n");
+	}
+}
+void World::lookRoomsSouth()const
+{
+	if (my_player[0].situation == floor3)
+	{
+		printf("\nThere are a some stairs going down\n");
+	}
+	else if (my_player[0].situation == floor2)
+	{
+		printf("\nThere are a some stairs going down\n");
+	}
+	else if (my_player[0].situation == floor1)
+	{
+		printf("\nThere are a some stairs going down\n");
+	}
+	else if (my_player[0].situation == requirements)
+	{
+		printf("\nA very old door is standing in front of you.\n");
+	}
+	else if (my_player[0].situation == bathroom)
+	{
+		printf("\nThere is only the fountain.\n");
+	}
+	else
+	{
+		printf("\nThere is a high wall you can't climb\n");
+	}
+}
+
+void World::lookRoomsEast()const
+{
+	if (my_player[0].situation == starting)
+	{
+		printf("\nThere is a door that leads to the 3rdFloor Rooms\n");
+	}
+	else if (my_player[0].situation == floor3)
+	{
+		printf("\nThere is a closed door.\n");
+	}
+	else if (my_player[0].situation == darkarts)
+	{
+		printf("\nThere is an old painting.\n");
+	}
+	else if (my_player[0].situation == floor2)
+	{
+		printf("\nThe door of the bathroom is in front of you.\n");
+	}
+	else if (my_player[0].situation == lowlevel)
+	{
+		printf("\nThe door of the transformation room is there, watching you.\n");
+	}
+	else
+	{
+		printf("\nThere is a high wall you can't climb\n");
+	}
+}
+
+void World::lookRoomsWest()const
+{
+	if (my_player[0].situation == floor3)
+	{
+		printf("\nYou started your search there.\n");
+	}
+	else if (my_player[0].situation == darkarts)
+	{
+		printf("\nYou can go to the 3rdFloor stairs.\n");
+	}
+	else if (my_player[0].situation == darkwizard)
+	{
+		printf("\nThe dark arts room is there.\n");
+	}
+	else if (my_player[0].situation == bathroom)
+	{
+		printf("\nYou can go to the 2ndFloor stairs.\n");
+	}
+	else if (my_player[0].situation == transformation)
+	{
+		printf("\nStraight to Low Level.\n");
+	}
+	else
+	{
+		printf("\nThere is a high wall you can't climb\n");
+	}
+}
+
