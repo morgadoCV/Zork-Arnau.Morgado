@@ -177,7 +177,7 @@ void World::moveEast()
 	if (my_player[0].situation == starting)
 	{
 		my_player[0].situation = my_exits[starting].destiny;
-		printf("\n%s%s\n", my_rooms[floor3].name, my_rooms[floor3].description);
+		printf("\n%s%s\n", my_rooms[floor3].name.give_buffer(), my_rooms[floor3].description.give_buffer());
 		return;
 	}
 	else if (my_player[0].situation == floor3)

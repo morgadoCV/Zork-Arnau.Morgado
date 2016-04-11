@@ -1,11 +1,11 @@
 #ifndef _PLAYER
 #define _PLAYER
 
-class Player
+#include"entity.h"
+
+class Player:public Entity
 {
 public:
-	char name[25];
-	char description[500];
 	int situation;
 };
 
