@@ -2,6 +2,7 @@
 #define _WORLD
 
 #include"entity.h"
+#include"myvector.h"
 
 class Player;
 class Exit;
@@ -10,9 +11,9 @@ class Room;
 
 class World:public Entity
 {
-public:
-	Player* my_player=nullptr;
-	Room* my_rooms=nullptr;
+private:
+	mVector<Player*> player;
+	mVector<Room*> rooms;
 	Exit* my_exits=nullptr;
 	char* str = nullptr;
 	int door=0,openfountain=0;
