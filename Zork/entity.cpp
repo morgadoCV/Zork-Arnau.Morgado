@@ -2,13 +2,16 @@
 
 Entity::Entity(const char* str1,const char* str2) : name(str1), description(str2)
 {
+	
 }
-
+Entity::Entity()
+{
+}
 Entity::~Entity()
 {
 }
 
-mString Entity::Get_Name()const
+mString Entity::Get_Name() const
 {
 	return name;
 }

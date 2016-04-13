@@ -17,6 +17,7 @@ public:
 		buffer = new char[reservedmemory];
 		strcpy_s(buffer, reservedmemory, "");
 	}
+
 	mString(const char* str)
 	{
 		int len = strlen(str);
@@ -57,7 +58,7 @@ public:
 	{
 		return strcmp(str, buffer) == 0;
 	}
-	void operator+=(const mString& str)
+	/*void operator+=(const mString& str)
 	{
 		unsigned int memory_i_need = lenght() + str.lenght() + 1;
 		if (memory_i_need > reservedmemory)
@@ -72,7 +73,7 @@ public:
 
 		}
 		strcat_s(buffer, str.reservedmemory, str.buffer);
-	}
+	}*/
 	void operator+=(const char* str);
 	void operator=(const mString& str)
 	{

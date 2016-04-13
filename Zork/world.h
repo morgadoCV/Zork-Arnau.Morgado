@@ -36,9 +36,9 @@ public:
 	int checkImput();
 	World(const char* str1, const char* str2);
 	~World();
+	World();
 };
 
-enum roooms{starting,floor1,floor2,floor3,lowlevel,requirements,darkarts,darkwizard,bathroom,secrets,transformation};
 
 
 #endif
