@@ -8,10 +8,11 @@
 #include"mystring.h"
 using namespace std;
 
-/*
+
 //constructor&&deconstructor
-World::World()
+World::World(const char* str1,const char* str2) :Entity(str1,str2)
 {
+
 } 
 
 World::~World()
@@ -29,28 +30,28 @@ void World::createWorld()
 	rooms.push_back(new Room("Starting Room.\n", "You can see a room when you look at east.There is a broom."));
 	rooms.push_back(new Room("3rd Floor.\n", "There are stair going down on south and a closed room east, it seems very cold.\n"));
 	rooms.push_back(new Room("2nd floor.\n", "You can go east to the bathroom and south downstairs to 1st floor.\nThere is a lantern on the floor.\n"));
+	rooms.push_back(new Room("Dark arts room.\n", "There is an old painting of Salazar Slytherin. You can also see a wand over the table and a heavy layer behind the door.\n"));
 	rooms.push_back(new Room("1st floor.\n", "There is a layer on the floor. The only way you can go is south, straight to the low level.\n"));
 	rooms.push_back(new Room("Low Level.\n", "You can only go east, to the transformation room.\n"));
 	rooms.push_back(new Room("Room of requirements.\n", "Wait..Where are you? You can see a book over a table."));
-	rooms.push_back(new Room("Dark arts room.\n", "There is an old painting of Salazar Slytherin. You can also see a wand over the table and a heavy layer behind the door.\n"));
-	rooms.push_back(new Room("Dark wizard room.\n", "Is there a room here? Since when? A wizard is staring at you with his wand on \nthe right hand.\n"));
 	rooms.push_back(new Room("Bathroom\n", "You found your friend Arnau. There is an old fountain with what seem snakes \narround it.\n"));
 	rooms.push_back(new Room("Chamber of Secrets.\n", "There is a BASILISK.There is also a book on the floor.\n"));
 	rooms.push_back(new Room("Transformation room.\n", "There is a sword next to the table.\n"));
+	rooms.push_back(new Room("Dark wizard room.\n", "Is there a room here? Since when? A wizard is staring at you with his wand on \nthe right hand.\n"));
 
 	
 	 //exits
-	exits.push_back(new Exit("", "East to 3rd Floor.\n", 3, 11, 11, 11));//starting 1
-	exits.push_back(new Exit("", "East to Dark arts room, south to 2nd Floor, west to the Starting Room.\n",6, 0, 5, 2));//3rdFloor 2
-	exits.push_back(new Exit("", "East to Bathroom, south to 1st Floor, north to 3rd Floor.\n", 8, 11, 3, 1));//2ndFloor 3
-	exits.push_back(new Exit("", "West to 3rd Floor.\n",7 ,3 ,11 ,11 ));//darkarts 4
-	exits.push_back(new Exit("", "South to Low Level, north to 2nd Floor.\n", 11, 11, 2,4 ));//1stFloor 5
-	exits.push_back(new Exit("", "East to the Transformation room, north to 1st Floor.\n", 10,11 ,1 ,11 ));//lowlevel 6
-	exits.push_back(new Exit("", "South to 3rd Floor.\n", 11, 11,11 ,3 ));//requirements 7
-	exits.push_back(new Exit("", "West to 2nd Floor.\n",11 ,2 , 11, 9));//bathroom 8
-	exits.push_back(new Exit("", "North to Bathroom.\n",11 ,11 ,8 ,11 ));//secrets 9
-	exits.push_back(new Exit("", "West to Low Level.\n", 11,4 ,11 ,11 )); //transformations 10
-	exits.push_back(new Exit("", "West to Dark Arts room",11 ,6 ,11 ,11 ));//darkwizard 11
+	exits.push_back(new Exit("", "East to 3rd Floor.\n", 1, 11, 11, 11));//starting 0
+	exits.push_back(new Exit("", "East to Dark arts room, south to 2nd Floor, west to the Starting Room.\n",3, 0, 6, 2));//3rdFloor 1
+	exits.push_back(new Exit("", "East to Bathroom, south to 1st Floor, north to 3rd Floor.\n", 7, 11, 1, 4));//2ndFloor 2
+	exits.push_back(new Exit("", "West to 3rd Floor.\n",10 ,1 ,11 ,11 ));//darkarts 3
+	exits.push_back(new Exit("", "South to Low Level, north to 2nd Floor.\n", 11, 11, 2, 5 ));//1stFloor 4
+	exits.push_back(new Exit("", "East to the Transformation room, north to 1st Floor.\n", 9,11 ,4 ,11 ));//lowlevel 5
+	exits.push_back(new Exit("", "South to 3rd Floor.\n", 11, 11,11 ,1 ));//requirements 6
+	exits.push_back(new Exit("", "West to 2nd Floor.\n",11 ,2 , 11, 8));//bathroom 7
+	exits.push_back(new Exit("", "North to Bathroom.\n",11 ,11 ,7 ,11 ));//secrets 8
+	exits.push_back(new Exit("", "West to Low Level.\n", 11,5 ,11 ,11 )); //transformations 6
+	exits.push_back(new Exit("", "West to Dark Arts room",11 ,3 ,11 ,11 ));//darkwizard 10
 	
 		
 		
@@ -143,34 +144,34 @@ int World::checkImput()
 //movement
 
 void World::moveNorth(){
-	if (player[0]->situation == 2)
+	if (player[0]->situation == 1)
 	{
-		player[0]->situation = exits[2]->destiny3;
-		printf("\n%s%s\n\n", rooms[7]->Get_Name(), rooms[7]->Get_Description());
+		player[0]->situation = exits[1]->destiny3;
+		printf("\n%s%s\n\n", rooms[6]->Get_Name(), rooms[6]->Get_Description());
 		return;
 	}
-	else if (player[0]->situation == 3)
+	else if (player[0]->situation == 2)
 	{
-		player[0]->situation = exits[3]->destiny3;
+		player[0]->situation = exits[2]->destiny3;
+		printf("\n%s%s\n", rooms[1]->Get_Name(), rooms[1]->Get_Description());
+		return;
+	}
+	else if (player[0]->situation == 4)
+	{
+		player[0]->situation = exits[4]->destiny3;
 		printf("\n%s%s\n", rooms[2]->Get_Name(), rooms[2]->Get_Description());
 		return;
 	}
 	else if (player[0]->situation == 5)
 	{
 		player[0]->situation = exits[5]->destiny3;
-		printf("\n%s%s\n", rooms[3]->Get_Name(), rooms[3]->Get_Description());
+		printf("\n%s%s\n", rooms[4]->Get_Name(), rooms[4]->Get_Description());
 		return;
 	}
-	else if (player[0]->situation == 6)
+	else if (player[0]->situation == 8)
 	{
-		player[0]->situation = exits[6]->destiny3;
-		printf("\n%s%s\n", rooms[5]->Get_Name(), rooms[5]->Get_Description());
-		return;
-	}
-	else if (player[0]->situation == 9)
-	{
-		player[0]->situation = exits[9]->destiny3;
-		printf("\n%s%s\n", rooms[8]->Get_Name(), rooms[8]->Get_Description());
+		player[0]->situation = exits[8]->destiny3;
+		printf("\n%s%s\n", rooms[7]->Get_Name(), rooms[7]->Get_Description());
 		return;
 	}
 	else
@@ -182,38 +183,38 @@ void World::moveNorth(){
 
 void World::moveSouth()
 {
-	if (player[0]->situation == 2)
+	if (player[0]->situation == 1)
 	{
-		player[0]->situation = exits[2]->destiny4;
-		printf("\n%s%s\n", rooms[3]->Get_Name(), rooms[3]->Get_Description());
+		player[0]->situation = exits[1]->destiny4;
+		printf("\n%s%s\n", rooms[2]->Get_Name(), rooms[2]->Get_Description());
+		return;
+	}
+	else if (player[0]->situation == 6)
+	{
+		player[0]->situation = exits[6]->destiny4;
+		printf("\n%s%s\n", rooms[2]->Get_Name(), rooms[2]->Get_Description());
+		return;
+	}
+	else if (player[0]->situation == 2)
+	{
+		player[0]->situation = exits[2]->destiny4;;
+		printf("\n%s%s\n", rooms[4]->Get_Name(), rooms[4]->Get_Description());
+		return;
+	}
+	else if (player[0]->situation == 4)
+	{
+		player[0]->situation = exits[4]->destiny4;
+		printf("\n%s%s\n", rooms[5]->Get_Name(), rooms[5]->Get_Description());
 		return;
 	}
 	else if (player[0]->situation == 7)
 	{
-		player[0]->situation = exits[7]->destiny4;
-		printf("\n%s%s\n", rooms[3]->Get_Name(), rooms[3]->Get_Description());
-		return;
-	}
-	else if (player[0]->situation == 3)
-	{
-		player[0]->situation = exits[3]->destiny4;;
-		printf("\n%s%s\n", rooms[5]->Get_Name(), rooms[5]->Get_Description());
-		return;
-	}
-	else if (player[0]->situation == 5)
-	{
-		player[0]->situation = exits[5]->destiny4;
-		printf("\n%s%s\n", rooms[6]->Get_Name(), rooms[6]->Get_Description());
-		return;
-	}
-	else if (player[0]->situation == 8)
-	{
-		if (openfountain == 1){
-			player[0]->situation = exits[8]->destiny4;
-			printf("\n%s%s\n", rooms[9]->Get_Name(), rooms[9]->Get_Description());
+		if (rooms[7]->openfountain == 1){
+			player[0]->situation = exits[7]->destiny4;
+			printf("\n%s%s\n", rooms[8]->Get_Name(), rooms[8]->Get_Description());
 			return;
 		}
-		if (openfountain == 0){
+		if (rooms[7]->openfountain == 0){
 			printf("\nThere is a high wall you can't climb.\n\n");
 			return;
 		}
@@ -224,45 +225,45 @@ void World::moveSouth()
 		return;
 	}
 
-}*/
-/*
+}
+
 void World::moveEast()
 {
-	if (player[0]->situation == 1)
+	if (player[0]->situation == 0)
 	{
-		player[0]->situation = exits[1]->destiny2;
-		printf("\n%s%s\n", rooms[2]->Get_Name(), rooms[2]->Get_Description());
+		player[0]->situation = exits[0]->destiny2;
+		printf("\n%s%s\n", rooms[1]->Get_Name(), rooms[1]->Get_Description());
 		return;
 	}
-	else if (player[0]->situation == 2)
+	else if (player[0]->situation == 1)
 	{
-		if (door == 1)
+		if (rooms[1]->door == 1)
 		{
-			player[0]->situation = exits[2]->destiny2;
-			printf("\n%s%s\n", rooms[4]->Get_Name(), rooms[4]->Get_Description());
+			player[0]->situation = exits[1]->destiny2;
+			printf("\n%s%s\n", rooms[3]->Get_Name(), rooms[3]->Get_Description());
 			return;
 		}
-		else if (door == 0)
+		else if (rooms[1]->door == 0)
 		{
 			printf("\nThe door is closed.\n");
 		}
 	}
-	else if (player[0]->situation == 4)
-	{
-		player[0]->situation = exits[4]->destiny2;
-		printf("\n%s%s\n", rooms[11]->Get_Name(), rooms[11]->Get_Description();
-		return;
-	}
 	else if (player[0]->situation == 3)
 	{
 		player[0]->situation = exits[3]->destiny2;
-		printf("\n%s%s\n", my_rooms[bathroom].name, my_rooms[bathroom].description);
+		printf("\n%s%s\n", rooms[10]->Get_Name(), rooms[10]->Get_Description());
 		return;
 	}
-	else if (player[0]->situation == 6)
+	else if (player[0]->situation == 2)
 	{
-		player[0]->situation = exits[6]->destiny2;
-		printf("\n%s%s\n", my_rooms[transformation].name, my_rooms[transformation].description);
+		player[0]->situation = exits[2]->destiny2;
+		printf("\n%s%s\n", rooms[7]->Get_Name(), rooms[7]->Get_Description());
+		return;
+	}
+	else if (player[0]->situation == 5)
+	{
+		player[0]->situation = exits[5]->destiny2;
+		printf("\n%s%s\n", rooms[9]->Get_Name(), rooms[9]->Get_Description());
 		return;
 	}
 	else
@@ -273,43 +274,43 @@ void World::moveEast()
 }
 void World::moveWest()
 {
-	if (my_player[0].situation == floor3)
+	if (player[0]->situation == 1)
 	{
-		my_player[0].situation = my_exits[floor3].destiny;
-		printf("\n%s%s\n", my_rooms[starting].name, my_rooms[starting].description);
+		player[0]->situation = exits[1]->destiny2;
+		printf("\n%s%s\n", rooms[0]->Get_Name(), rooms[0]->Get_Description());
 		return;
 	}
-	else if (my_player[0].situation == darkarts)
+	else if (player[0]->situation == 3)
 	{
-		if (door == 1)
+		if (rooms[3]->door == 1)
 		{
-			my_player[0].situation = my_exits[darkarts].destiny;
-			printf("\n%s%s\n", my_rooms[floor3].name, my_rooms[floor3].description);
+			player[0]->situation = exits[3]->destiny2;
+			printf("\n%s%s\n", rooms[1]->Get_Name(), rooms[1]->Get_Description());
 			return;
 		}
-		else if (door == 0)
+		else if (rooms[3]->door == 0)
 		{
 			printf("\nThe door is closed.\n");
 			return;
 		}
 	}
 
-	else if (my_player[0].situation == darkwizard)
+	else if (player[0]->situation == 10)
 	{
-		my_player[0].situation = my_exits[darkwizard].destiny;
-		printf("\n%s%s\n", my_rooms[darkarts].name, my_rooms[darkarts].description);
+		player[0]->situation = exits[10]->destiny2;
+		printf("\n%s%s\n", rooms[3]->Get_Name(), rooms[3]->Get_Description());
 		return;
 	}
-	else if (my_player[0].situation == bathroom)
+	else if (player[0]->situation == 7)
 	{
-		my_player[0].situation = my_exits[bathroom].destiny2;
-		printf("\n%s%s\n", my_rooms[floor2].name, my_rooms[floor2].description);
+		player[0]->situation = exits[7]->destiny2;
+		printf("\n%s%s\n", rooms[2]->Get_Name(), rooms[2]->Get_Description());
 		return;
 	}
-	else if (my_player[0].situation == transformation)
+	else if (player[0]->situation == 9)
 	{
-		my_player[0].situation = my_exits[transformation].destiny;
-		printf("\n%s%s\n", my_rooms[lowlevel].name, my_rooms[lowlevel].description);
+		player[0]->situation = exits[9]->destiny2;
+		printf("\n%s%s\n", rooms[5]->Get_Name(), rooms[5]->Get_Description());
 		return;
 	}
 	else
@@ -321,19 +322,19 @@ void World::moveWest()
 
 //other
 
-void World::lookRooms() const
+void World::lookRooms()
 {
-	if (my_player[0].situation == starting) printf("\n%s\n", my_exits[starting].description);
-	else if (my_player[0].situation == floor3) printf("\n%s\n", my_exits[floor3].description);
-	else if (my_player[0].situation == transformation) printf("\n%s\n", my_exits[transformation].description);
-	else if (my_player[0].situation == darkarts) printf("\n%s\n", my_exits[darkarts].description);
-	else if (my_player[0].situation == darkwizard) printf("\n%s\n", my_exits[darkwizard].description);
-	else if (my_player[0].situation == floor2) printf("\n%s\n", my_exits[floor2].description);
-	else if (my_player[0].situation == floor1) printf("\n%s\n", my_exits[floor1].description);
-	else if (my_player[0].situation == lowlevel) printf("\n%s\n", my_exits[lowlevel].description);
-	else if (my_player[0].situation == requirements) printf("\n%s\n", my_exits[requirements].description);
-	else if (my_player[0].situation == bathroom) printf("\n%s\n", my_exits[bathroom].description);
-	else if (my_player[0].situation == secrets) printf("\n%s\n", my_exits[secrets].description);
+	if (player[0]->situation == 0) printf("\n%s\n", exits[0]->Get_Description());
+	else if (player[0]->situation == 1) printf("\n%s\n", exits[1]->Get_Description());
+	else if (player[0]->situation == 9) printf("\n%s\n", exits[9]->Get_Description());
+	else if (player[0]->situation == 3) printf("\n%s\n", exits[3]->Get_Description());
+	else if (player[0]->situation == 10) printf("\n%s\n", exits[10]->Get_Description());
+	else if (player[0]->situation == 2) printf("\n%s\n", exits[2]->Get_Description());
+	else if (player[0]->situation == 4) printf("\n%s\n", exits[1]->Get_Description());
+	else if (player[0]->situation == 5) printf("\n%s\n", exits[5]->Get_Description());
+	else if (player[0]->situation == 6) printf("\n%s\n", exits[6]->Get_Description());
+	else if (player[0]->situation == 7) printf("\n%s\n", exits[7]->Get_Description());
+	else if (player[0]->situation == 8) printf("\n%s\n", exits[8]->Get_Description());
 }
 
 void World::giveHelp() const
@@ -352,16 +353,16 @@ void World::giveHelp() const
 
 void World::openDoor()
 {
-	if (my_player[0].situation == floor3&&door == 0)
+	if (player[0]->situation == 1 && rooms[1]->door == 0)
 	{
 		printf("Door opened.\n");
-		door = 1;
+		rooms[1]->door= 1;
 
 	}
-	else if (my_player[0].situation == darkarts&&door == 0)
+	else if (player[0]->situation == 3 && rooms[3]->door == 0)
 	{
 		printf("Door opened.\n");
-		door = 1;
+		rooms[1]->door = 1;
 
 	}
 	else
@@ -373,15 +374,15 @@ void World::openDoor()
 
 void World::closeDoor()
 {
-	if (my_player[0].situation == darkarts&&door == 1){
+	if (player[0]->situation == 3 && rooms[3]->door == 1){
 		printf("The door is closed.\n");
-		door = 0;
+		rooms[1]->door = 0;
 
 	}
-	else if (my_player[0].situation == floor3&&door == 1)
+	else if (player[0]->situation == 1 && rooms[1]->door == 1)
 	{
 		printf("The door is closed.\n");
-		door = 0;
+		rooms[1]->door = 0;
 
 	}
 	else
@@ -393,11 +394,11 @@ void World::closeDoor()
 
 void World::talkParsel()
 {
-	if (my_player[0].situation == bathroom)
+	if (player[0]->situation == 7)
 	{
-		if (openfountain == 0){
+		if (rooms[7]->openfountain == 0){
 			printf("\nThe fountain is moving...A door just opened on the fountain\n");
-			openfountain = 1;
+			rooms[7]->openfountain = 1;
 		}
 		else
 		{
@@ -410,26 +411,26 @@ void World::talkParsel()
 	}
 }
 
-void World::lookRoomsNorth()const
+void World::lookRoomsNorth()
 {
 
-	if (my_player[0].situation == floor3)
+	if (player[0]->situation == 1)
 	{
 		printf("\nSeems like some time ago there was a door here.\n");
 	}
-	else if (my_player[0].situation == floor2)
+	else if (player[0]->situation == 2)
 	{
 		printf("\nThere are some stairs going up.\n");
 	}
-	else if (my_player[0].situation == floor1)
+	else if (player[0]->situation == 4)
 	{
 		printf("\nThere are some stairs going up.\n");
 	}
-	else if (my_player[0].situation == lowlevel)
+	else if (player[0]->situation == 5)
 	{
 		printf("\nThere are some stairs going up.\n");
 	}
-	else if (my_player[0].situation == secrets)
+	else if (player[0]->situation == 8)
 	{
 		printf("\nYou can see the fountain on the middle if the dark.\n");
 	}
@@ -438,25 +439,25 @@ void World::lookRoomsNorth()const
 		printf("\nThere is a high wall you can't climb\n");
 	}
 }
-void World::lookRoomsSouth()const
+void World::lookRoomsSouth()
 {
-	if (my_player[0].situation == floor3)
+	if (player[0]->situation == 1)
 	{
 		printf("\nThere are a some stairs going down\n");
 	}
-	else if (my_player[0].situation == floor2)
+	else if (player[0]->situation == 2)
 	{
 		printf("\nThere are a some stairs going down\n");
 	}
-	else if (my_player[0].situation == floor1)
+	else if (player[0]->situation == 4)
 	{
 		printf("\nThere are a some stairs going down\n");
 	}
-	else if (my_player[0].situation == requirements)
+	else if (player[0]->situation == 6)
 	{
 		printf("\nA very old door is standing in front of you.\n");
 	}
-	else if (my_player[0].situation == bathroom)
+	else if (player[0]->situation == 7)
 	{
 		printf("\nThere is only the fountain.\n");
 	}
@@ -466,25 +467,25 @@ void World::lookRoomsSouth()const
 	}
 }
 
-void World::lookRoomsEast()const
+void World::lookRoomsEast()
 {
-	if (my_player[0].situation == starting)
+	if (player[0]->situation == 0)
 	{
 		printf("\nThere is a door that leads to the 3rdFloor Rooms\n");
 	}
-	else if (my_player[0].situation == floor3)
+	else if (player[0]->situation == 1)
 	{
 		printf("\nThere is a closed door.\n");
 	}
-	else if (my_player[0].situation == darkarts)
+	else if (player[0]->situation == 3)
 	{
 		printf("\nThere is an old painting.\n");
 	}
-	else if (my_player[0].situation == floor2)
+	else if (player[0]->situation == 2)
 	{
 		printf("\nThe door of the bathroom is in front of you.\n");
 	}
-	else if (my_player[0].situation == lowlevel)
+	else if (player[0]->situation == 5)
 	{
 		printf("\nThe door of the transformation room is there, watching you.\n");
 	}
@@ -494,25 +495,25 @@ void World::lookRoomsEast()const
 	}
 }
 
-void World::lookRoomsWest()const
+void World::lookRoomsWest()
 {
-	if (my_player[0].situation == floor3)
+	if (player[0]->situation == 1)
 	{
 		printf("\nYou started your search there.\n");
 	}
-	else if (my_player[0].situation == darkarts)
+	else if (player[0]->situation == 3)
 	{
 		printf("\nYou can go to the 3rdFloor stairs.\n");
 	}
-	else if (my_player[0].situation == darkwizard)
+	else if (player[0]->situation == 10)
 	{
 		printf("\nThe dark arts room is there.\n");
 	}
-	else if (my_player[0].situation == bathroom)
+	else if (player[0]->situation == 7)
 	{
 		printf("\nYou can go to the 2ndFloor stairs.\n");
 	}
-	else if (my_player[0].situation == transformation)
+	else if (player[0]->situation == 9)
 	{
 		printf("\nStraight to Low Level.\n");
 	}
@@ -521,4 +522,3 @@ void World::lookRoomsWest()const
 		printf("\nThere is a high wall you can't climb\n");
 	}
 }
-*/

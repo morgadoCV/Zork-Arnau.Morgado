@@ -36,7 +36,7 @@ public:
 		delete[]my_array;
 	}
 	//operators
-	TYPE& operator[](uint i)
+	TYPE& operator[](int i)
 	{
 		assert(i < num_elements);
 		return my_array[i];

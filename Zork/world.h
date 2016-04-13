@@ -11,12 +11,11 @@ class Room;
 
 class World:public Entity
 {
-public:
+private:
 	mVector<Player*> player;
 	mVector<Room*> rooms;
 	mVector<Exit*> exits;
 	
-	int door=0,openfountain=0;
 	
 
 public:
@@ -25,17 +24,17 @@ public:
 	void moveSouth();
 	void moveEast();
 	void moveWest();
-	void lookRooms() const;
-	void lookRoomsNorth()const;
-	void lookRoomsSouth()const;
-	void lookRoomsEast()const;
-	void lookRoomsWest()const;
+	void lookRooms();
+	void lookRoomsNorth();
+	void lookRoomsSouth();
+	void lookRoomsEast();
+	void lookRoomsWest();
 	void giveHelp() const;
 	void openDoor();
 	void closeDoor();
 	void talkParsel();
 	int checkImput();
-	World();
+	World(const char* str1, const char* str2);
 	~World();
 };
 
