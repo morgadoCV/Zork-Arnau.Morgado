@@ -11,11 +11,11 @@ class Room;
 
 class World:public Entity
 {
-private:
+public:
 	mVector<Player*> player;
 	mVector<Room*> rooms;
-	Exit* my_exits=nullptr;
-	char* str = nullptr;
+	mVector<Exit*> exits;
+	
 	int door=0,openfountain=0;
 	
 

@@ -5,13 +5,15 @@
 #include"room.h"
 #include"world.h"
 #include"exit.h"
+#include"player.h"
+#include"entity.h"
 using namespace std;
 
 
 int main()
 {
-	
-	World w;
+	mVector<Player*> hola;
+	/*World w;
 	int exit = 1,flag=0;
 	char userinput[25];
 	w.createWorld();
@@ -25,8 +27,9 @@ int main()
 		else{ exit = 0; }
 	}
 	printf("\nYou have quit.\n");
-
-
+	*/
+	hola.push_back(new Player("Unknown", "As", 0));
+	printf("%s",hola[0]->Get_Name());
 	system("pause");
 	return 0;
 }

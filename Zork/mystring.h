@@ -2,6 +2,8 @@
 #ifndef _STRING_CLASS_
 #define _STRING_CLASS_
 #include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
 
 class mString
 {
@@ -89,9 +91,13 @@ public:
 	{
 		return reservedmemory;
 	}
-	char* give_buffer()
+	char* give_str()
 	{
 		return buffer;
+	}
+	void get_str()
+	{
+		gets_s(buffer,25);
 	}
 };
 
