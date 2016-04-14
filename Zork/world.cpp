@@ -354,7 +354,7 @@ void World::moveWest()
 
 //other
 
-void World::lookRooms()
+void World::lookRooms() const
 {
 	if (player[0]->situation == 0) printf("\n%s\n", exits[0]->Get_Description());
 	else if (player[0]->situation == 1) printf("\n%s\n", exits[1]->Get_Description());
@@ -448,7 +448,7 @@ void World::talkParsel()
 	}
 }
 
-void World::lookRoomsNorth()
+void World::lookRoomsNorth() const
 {
 
 	if (player[0]->situation == 1)
@@ -476,7 +476,7 @@ void World::lookRoomsNorth()
 		printf("\nThere is a high wall you can't climb\n");
 	}
 }
-void World::lookRoomsSouth()
+void World::lookRoomsSouth() const
 {
 	if (player[0]->situation == 1)
 	{
@@ -504,7 +504,7 @@ void World::lookRoomsSouth()
 	}
 }
 
-void World::lookRoomsEast()
+void World::lookRoomsEast() const
 {
 	if (player[0]->situation == 0)
 	{
@@ -532,7 +532,7 @@ void World::lookRoomsEast()
 	}
 }
 
-void World::lookRoomsWest()
+void World::lookRoomsWest() const
 {
 	if (player[0]->situation == 1)
 	{

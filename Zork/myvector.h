@@ -42,6 +42,11 @@ public:
 		assert(i < num_elements);
 		return my_array[i];
 	}
+	TYPE& operator[](int i) const
+	{
+		assert(i < num_elements);
+		return my_array[i];
+	}
 	//modifiers
 	void push_back(const TYPE num)
 	{

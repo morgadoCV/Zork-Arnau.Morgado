@@ -24,11 +24,11 @@ public:
 	void moveSouth();
 	void moveEast();
 	void moveWest();
-	void lookRooms();
-	void lookRoomsNorth();
-	void lookRoomsSouth();
-	void lookRoomsEast();
-	void lookRoomsWest();
+	void lookRooms() const;
+	void lookRoomsNorth() const;
+	void lookRoomsSouth() const;
+	void lookRoomsEast() const;
+	void lookRoomsWest() const;
 	void giveHelp() const;
 	void openDoor();
 	void closeDoor();
