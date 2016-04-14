@@ -87,6 +87,18 @@ public:
 			strcpy_s(buffer, str.reservedmemory, str.buffer);
 		}
 	}
+	void operator=(const char* str)
+	{
+
+		if (strlen(str) + 1 == reservedmemory) strcpy_s(buffer, strlen(str) + 1, str);
+		else if (strlen(str) + 1 < reservedmemory) strcpy_s(buffer, strlen(str) + 1, str);
+		else{
+			delete[]buffer;
+			reservedmemory = strlen(str) + 1;
+			buffer = new char[strlen(str) + 1];
+			strcpy_s(buffer, strlen(str) + 1, str);
+		}
+	}
 	
 	unsigned int capacity()const
 	{
@@ -96,10 +108,7 @@ public:
 	{
 		return buffer;
 	}
-	void get_str()
-	{
-		gets_s(buffer,25);
-	}
+	
 };
 
 #endif //_STRING_CLASS_

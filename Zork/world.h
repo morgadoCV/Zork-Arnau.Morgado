@@ -15,7 +15,7 @@ private:
 	mVector<Player*> player;
 	mVector<Room*> rooms;
 	mVector<Exit*> exits;
-	
+	char* input = nullptr; 
 	
 
 public:
@@ -34,9 +34,13 @@ public:
 	void closeDoor();
 	void talkParsel();
 	int checkImput();
+	void getinput();
 	World(const char* str1, const char* str2);
 	~World();
 	World();
+	
+	
+
 };
 
 

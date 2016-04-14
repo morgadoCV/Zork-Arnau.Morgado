@@ -21,6 +21,7 @@ World::World()
 
 World::~World()
 {
+	delete[]input;
 }
 
 //createworld
@@ -63,77 +64,84 @@ void World::createWorld()
 
 
 //checkimput
+void World::getinput()
+{
+	input = new char[25];
+	gets_s(input, 25);
+}
 
 int World::checkImput()
 {
-	mString userinput;
+	mString comand;
 	printf("What do you wanna do?\n");
-	userinput.get_str();
-	if (userinput == "go north" || userinput == "north" || userinput == "n")
+	getinput();
+	comand = input;
+	//userinput.get_str();
+	if (comand == "go north" || comand == "north" || comand == "n")
 	{
 		moveNorth();
 		return 0;
 	}
-	else if (userinput == "go south" || userinput == "south" || userinput == "n")
+	else if (comand == "go south" || comand == "south" || comand == "s")
 	{
 		moveSouth();
 		return 0;
 	}
-	else if (userinput == "go east" || userinput == "east" || userinput=="e")
+	else if (comand == "go east" || comand == "east" || comand == "e")
 	{
 		moveEast();
 		return 0;
 	}
-	else if (userinput == "go west" || userinput== "west" || userinput=="w")
+	else if (comand == "go west" || comand == "west" || comand == "w")
 	{
 		moveWest();
 		return 0;
 	}
-	else if (userinput=="look")
+	else if (comand == "look")
 	{
 		lookRooms();
 		return 0;
 	}
-	else if (userinput=="look north")
+	else if (comand == "look north")
 	{
 		lookRoomsNorth();
 		return 0;
 	}
-	else if (userinput=="look south")
+	else if (comand == "look south")
 	{
 		lookRoomsSouth();
 		return 0;
 	}
-	else if (userinput=="look east")
+	else if (comand == "look east")
 	{
 		lookRoomsEast();
 		return 0;
 	}
-	else if (userinput=="look west")
+	else if (comand == "look west")
 	{
 		lookRoomsWest();
 		return 0;
 	}
-	else if (userinput=="help")
+	else if (comand == "help")
 	{
 		giveHelp();
 		return 0;
 	}
-	else if (userinput=="quit")
+	else if (comand == "quit")
 	{
 		return 1;
 	}
-	else if (userinput=="open")
+	else if (comand == "open")
 	{
 		openDoor();
 		return 0;
 	}
-	else if (userinput=="close")
+	else if (comand == "close")
 	{
 		closeDoor();
 		return 0;
 	}
-	else if (userinput=="talk parsel")
+	else if (comand == "talk parsel")
 	{
 		talkParsel();
 		return 0;
@@ -143,6 +151,7 @@ int World::checkImput()
 		printf("\nWrong command.Type 'help' if you need it.\n");
 		return 0;
 	}
+	
 }
 
 //movement
@@ -195,7 +204,8 @@ void World::moveSouth()
 	if (player[0]->situation == 1)
 	{
 		player[0]->situation = exits[1]->destiny4;
-		printf("\n%s%s\n", rooms[2]->Get_Name(), rooms[2]->Get_Description());
+		printf("\n%s\n", rooms[2]->Get_Name());
+		printf("\n%s\n", rooms[2]->Get_Description());
 		return;
 	}
 	else if (player[0]->situation == 6)
@@ -244,7 +254,7 @@ void World::moveEast()
 {
 	if (player[0]->situation == 0)
 	{
-		player[0]->situation = exits[0]->destiny2;
+		player[0]->situation = exits[0]->destiny;
 		printf("\n%s\n", rooms[1]->Get_Name());
 		printf("\n%s\n", rooms[1]->Get_Description());
 		return;
@@ -253,7 +263,7 @@ void World::moveEast()
 	{
 		if (rooms[1]->door == 1)
 		{
-			player[0]->situation = exits[1]->destiny2;
+			player[0]->situation = exits[1]->destiny;
 			printf("\n%s\n", rooms[3]->Get_Name());
 			printf("\n%s\n", rooms[3]->Get_Description());
 			return;
@@ -265,21 +275,21 @@ void World::moveEast()
 	}
 	else if (player[0]->situation == 3)
 	{
-		player[0]->situation = exits[3]->destiny2;
+		player[0]->situation = exits[3]->destiny;
 		printf("\n%s\n", rooms[10]->Get_Name());
 		printf("\n%s\n", rooms[10]->Get_Description());
 		return;
 	}
 	else if (player[0]->situation == 2)
 	{
-		player[0]->situation = exits[2]->destiny2;
+		player[0]->situation = exits[2]->destiny;
 		printf("\n%s\n", rooms[7]->Get_Name());
 		printf("\n%s\n", rooms[7]->Get_Description());
 		return;
 	}
 	else if (player[0]->situation == 5)
 	{
-		player[0]->situation = exits[5]->destiny2;
+		player[0]->situation = exits[5]->destiny;
 		printf("\n%s\n", rooms[9]->Get_Name());
 		printf("\n%s\n", rooms[9]->Get_Description());
 		return;
@@ -301,7 +311,7 @@ void World::moveWest()
 	}
 	else if (player[0]->situation == 3)
 	{
-		if (rooms[3]->door == 1)
+		if(rooms[3]->door==1)
 		{
 			player[0]->situation = exits[3]->destiny2;
 			printf("\n%s\n", rooms[1]->Get_Name());
@@ -311,7 +321,6 @@ void World::moveWest()
 		else if (rooms[3]->door == 0)
 		{
 			printf("\nThe door is closed.\n");
-			return;
 		}
 	}
 
@@ -380,11 +389,13 @@ void World::openDoor()
 	{
 		printf("Door opened.\n");
 		rooms[1]->door= 1;
+		rooms[3]->door = 1;
 
 	}
 	else if (player[0]->situation == 3 && rooms[3]->door == 0)
 	{
 		printf("Door opened.\n");
+		rooms[3]->door = 1;
 		rooms[1]->door = 1;
 
 	}
@@ -400,12 +411,15 @@ void World::closeDoor()
 	if (player[0]->situation == 3 && rooms[3]->door == 1){
 		printf("The door is closed.\n");
 		rooms[1]->door = 0;
+		rooms[3]->door = 0;
 
 	}
 	else if (player[0]->situation == 1 && rooms[1]->door == 1)
 	{
 		printf("The door is closed.\n");
 		rooms[1]->door = 0;
+		rooms[3]->door = 0;
+		
 
 	}
 	else
