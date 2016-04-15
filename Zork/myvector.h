@@ -1,18 +1,17 @@
-
 #ifndef _NEW_H_
 #define _NEW_H_
 
 typedef unsigned int uint;
 #include<assert.h>
 #include<stdio.h>
-#include"mystring.h"
+
 
 template <class TYPE>
 class mVector
 {
 private:
 	TYPE* my_array = nullptr;
-	uint capacity = 0;
+	uint capacity = 10;
 	uint num_elements = 0;
 
 public:
@@ -32,17 +31,23 @@ public:
 		}
 
 	}
+	mVector(uint size) :capacity(size)
+	{
+		num_elements = size;
+		my_array = new TYPE[capacity];
+
+	}
 	~mVector()
 	{
 		delete[]my_array;
 	}
 	//operators
-	TYPE& operator[](int i)
+	TYPE& operator[](uint i)
 	{
 		assert(i < num_elements);
 		return my_array[i];
 	}
-	TYPE& operator[](int i) const
+	TYPE& operator[](uint i) const
 	{
 		assert(i < num_elements);
 		return my_array[i];
@@ -91,13 +96,6 @@ public:
 
 	}
 
-	void print_vector() const
-	{
-		for (int i = 0; i < num_elements; ++i)
-		{
-			printf("%d\n", my_array[i]);
-		}
-	}
 
 	//other functions
 	uint size() const
@@ -114,11 +112,26 @@ public:
 	}
 	void clear()
 	{
+		num_elements = 0;
+	}
+	bool pop_back(TYPE& value)
+	{
+		if (num_elements > 0)
+		{
+			num_elements--;
+			value = my_array[num_elements];
+			return true;
+		}
+		else if (num_elements == NULL)
+		{
+			printf("Ets un matat\n");
+			return false;
+		}
 
 	}
 
 };
 
 
-#endif
 
+#endif
