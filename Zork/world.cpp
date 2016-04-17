@@ -181,6 +181,7 @@ int World::checkImput()
 			player[0]->modifybool(0);
 			printf("You have picked the wand.\n");
 			rooms[player[0]->situation]->room_items[0] = false;
+			player[0]->modifyattack(50);
 		}
 		else
 		{
@@ -196,6 +197,7 @@ int World::checkImput()
 			player[0]->modifybool(1);
 			printf("You have picked the instakill book.\n");
 			rooms[player[0]->situation]->room_items[1] = false;
+			player[0]->modifyattack(500);
 		}
 		else
 		{
@@ -210,6 +212,7 @@ int World::checkImput()
 			player[0]->modifybool(2);
 			printf("You have picked the layer.\n");
 			rooms[player[0]->situation]->room_items[2] = false;
+			player[0]->modifydefense(300);
 		}
 		else
 		{
@@ -316,6 +319,7 @@ int World::checkImput()
 			player[0]->modifybool(10);
 			printf("You have picked the stun book.\n");
 			rooms[player[0]->situation]->room_items[10] = false;
+			player[0]->modifyattack(50);
 		}
 		else
 		{
@@ -329,6 +333,7 @@ int World::checkImput()
 			player[0]->inventory[0] = false;
 			printf("You have droped the wand.\n");
 			rooms[player[0]->situation]->room_items[0] = true;
+			player[0]->modifyattack2(50);
 		}
 		else
 		{
@@ -342,6 +347,7 @@ int World::checkImput()
 			player[0]->inventory[1] = false;
 			printf("You have droped the wand.\n");
 			rooms[player[0]->situation]->room_items[1] = true;
+			player[0]->modifyattack2(500);
 		}
 		else
 		{
@@ -355,6 +361,7 @@ int World::checkImput()
 			player[0]->inventory[2] = false;
 			printf("You have droped the wand.\n");
 			rooms[player[0]->situation]->room_items[2] = true;
+			player[0]->modifydefense2(300);
 		}
 		else
 		{
@@ -433,6 +440,7 @@ int World::checkImput()
 			player[0]->inventory[10] = false;
 			printf("You have droped the wand.\n");
 			rooms[player[0]->situation]->room_items[10] = true;
+			player[0]->modifyattack2(50);
 		}
 		else
 		{
@@ -467,6 +475,7 @@ int World::checkImput()
 		if (player[0]->inventory[1] || rooms[player[0]->situation]->room_items[1])
 		{
 			printf("\n%s\n", items[1]->Get_Description());
+			
 		}
 		else
 		{
@@ -572,7 +581,11 @@ int World::checkImput()
 			printf("You can't see this item.");
 		}
 	}
-	
+	else if (comand=="stats")
+	{
+		printf("\nAttack->%i\n", player[0]->giveattack());
+		printf("\nDefense->%i\n", player[0]->givedefense());
+	}
 	
 	else
 	{
