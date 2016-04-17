@@ -7,7 +7,7 @@
 class Player;
 class Exit;
 class Room;
-
+class Item;
 
 class World:public Entity
 {

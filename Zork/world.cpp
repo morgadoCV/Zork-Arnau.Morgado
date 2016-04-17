@@ -70,7 +70,22 @@ void World::createWorld()
 	items.push_back(new Item("Goddreic's Griffindor sword", "Some books say that it can kill magic creatures."));
 	items.push_back(new Item("Photo", "It is an old photo of you and your parents, what is it doing here?."));
 	items.push_back(new Item("Broom", "An old Broom, maybe you can fly with it, who knows?"));
+	items.push_back(new Item("Heavy Layer", "Maybe you can equip it."));
+	items.push_back(new Item("Stun Book", "Just read it."));
 
+	//giving items to rooms
+	rooms[0]->set_items(8, -1);
+	rooms[1]->set_items(-1, -1);
+	rooms[2]->set_items(5, -1);
+	rooms[3]->set_items(9, 0);
+	rooms[4]->set_items(2, -1);
+	rooms[5]->set_items(-1, -1);
+	rooms[6]->set_items(10, -1);
+	rooms[7]->set_items(3, -1);
+	rooms[8]->set_items(1, 7);
+	rooms[9]->set_items(4, 6);
+	rooms[10]->set_items(-1, -1);
+	
 
 }
 
@@ -158,6 +173,320 @@ int World::checkImput()
 		talkParsel();
 		return 0;
 	}
+	else if (comand == "pick wand")
+	{
+		if (rooms[player[0]->situation]->room_items[0])
+		{
+			rooms[player[0]->situation]->modifybool(0);
+			player[0]->modifybool(0);
+			printf("You have picked the wand.\n");
+			rooms[player[0]->situation]->room_items[0] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	
+	else if (comand == "pick instakill book")
+	{
+		if (rooms[player[0]->situation]->room_items[1])
+		{
+			rooms[player[0]->situation]->modifybool(1);
+			player[0]->modifybool(1);
+			printf("You have picked the instakill book.\n");
+			rooms[player[0]->situation]->room_items[1] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick layer")
+	{
+		if (rooms[player[0]->situation]->room_items[2])
+		{
+			rooms[player[0]->situation]->modifybool(2);
+			player[0]->modifybool(2);
+			printf("You have picked the layer.\n");
+			rooms[player[0]->situation]->room_items[2] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick time turner")
+	{
+		if (rooms[player[0]->situation]->room_items[3])
+		{
+			rooms[player[0]->situation]->modifybool(3);
+			player[0]->modifybool(3);
+			printf("You have picked the time turner.\n");
+			rooms[player[0]->situation]->room_items[3] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick keys")
+	{
+		if (rooms[player[0]->situation]->room_items[4])
+		{
+			rooms[player[0]->situation]->modifybool(4);
+			player[0]->modifybool(4);
+			printf("You have picked the keys.\n");
+			rooms[player[0]->situation]->room_items[4] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick lantern")
+	{
+		if (rooms[player[0]->situation]->room_items[5])
+		{
+			rooms[player[0]->situation]->modifybool(5);
+			player[0]->modifybool(5);
+			printf("You have picked the lamp.\n");
+			rooms[player[0]->situation]->room_items[5] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick sword")
+	{
+		if (rooms[player[0]->situation]->room_items[6])
+		{
+			rooms[player[0]->situation]->modifybool(6);
+			player[0]->modifybool(6);
+			printf("You have picked the sword.\n");
+			rooms[player[0]->situation]->room_items[6] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick photo")
+	{
+		if (rooms[player[0]->situation]->room_items[7])
+		{
+			rooms[player[0]->situation]->modifybool(7);
+			player[0]->modifybool(7);
+			printf("You have picked the photo.\n");
+			rooms[player[0]->situation]->room_items[7] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick broom")
+	{
+		if (rooms[player[0]->situation]->room_items[8])
+		{
+			printf("This isn't the time to use that! Do you wanna fly into the school?\n");
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick heavy layer")
+	{
+		if (rooms[player[0]->situation]->room_items[9])
+		{
+			printf("It is to heavy!!");
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "pick stun book")
+	{
+		if (rooms[player[0]->situation]->room_items[10])
+		{
+			rooms[player[0]->situation]->modifybool(10);
+			player[0]->modifybool(10);
+			printf("You have picked the stun book.\n");
+			rooms[player[0]->situation]->room_items[10] = false;
+		}
+		else
+		{
+			printf("You can't find this item at this room.\n");
+		}
+	}
+	else if (comand == "drop wand")
+	{
+		if (player[0]->inventory[0])
+		{
+			player[0]->inventory[0] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[0] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop instakill book")
+	{
+		if (player[0]->inventory[1])
+		{
+			player[0]->inventory[1] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[1] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop layer")
+	{
+		if (player[0]->inventory[2])
+		{
+			player[0]->inventory[2] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[2] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop time turner")
+	{
+		if (player[0]->inventory[3])
+		{
+			player[0]->inventory[3] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[3] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "keys")
+	{
+		if (player[0]->inventory[4])
+		{
+			player[0]->inventory[4] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[4] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop lantern")
+	{
+		if (player[0]->inventory[5])
+		{
+			player[0]->inventory[5] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[5] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop sword")
+	{
+		if (player[0]->inventory[6])
+		{
+			player[0]->inventory[6] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[6] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop photo")
+	{
+		if (player[0]->inventory[7])
+		{
+			player[0]->inventory[7] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[7] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	else if (comand == "drop stun book")
+	{
+		if (player[0]->inventory[10])
+		{
+			player[0]->inventory[10] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[10] = true;
+		}
+		else
+		{
+			printf("You don't have this item.\n");
+		}
+	}
+	/*
+	else if (comand == "look wand")
+	{
+		printf("\n%s\n",items[0]->Get_Name());
+		printf("\n%s\n", items[0]->Get_Description());
+	}
+	else if (comand == "look instakill book")
+	{
+		printf("\n%s\n", items[1]->Get_Name());
+		printf("\n%s\n", items[1]->Get_Description());
+	}
+	else if (comand == "look layer")
+	{
+		printf("\n%s\n", items[2]->Get_Name());
+		printf("\n%s\n", items[2]->Get_Description());
+	}
+	else if (comand == "look time turner")
+	{
+		printf("\n%s\n", items[3]->Get_Name());
+		printf("\n%s\n", items[3]->Get_Description());
+	}
+	else if (comand == "keys")
+	{
+		printf("\n%s\n", items[4]->Get_Name());
+		printf("\n%s\n", items[4]->Get_Description());
+	}
+	else if (comand == "look lamp")
+	{
+		printf("\n%s\n", items[5]->Get_Name());
+		printf("\n%s\n", items[5]->Get_Description());
+	}
+	else if (comand == "look sword")
+	{
+		printf("\n%s\n", items[6]->Get_Name());
+		printf("\n%s\n", items[6]->Get_Description());
+	}
+	else if (comand == "look photo")
+	{
+		printf("\n%s\n", items[7]->Get_Name());
+		printf("\n%s\n", items[7]->Get_Description());
+	}
+	else if (comand == "look broom")
+	{
+		printf("\n%s\n", items[8]->Get_Name());
+		printf("\n%s\n", items[8]->Get_Description());
+	}
+	*/
+	
 	else
 	{
 		printf("\nWrong command.Type 'help' if you need it.\n");
@@ -571,3 +900,4 @@ void World::lookRoomsWest() const
 		printf("\nThere is a high wall you can't climb\n");
 	}
 }
+

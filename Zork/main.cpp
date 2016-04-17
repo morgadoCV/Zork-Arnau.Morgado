@@ -28,10 +28,7 @@ int main()
 	}
 	printf("\nYou have quit.\n");
 	
-	/*mVector<Room*> caca;
-	caca.push_back(new Room("hola", "si"));
-	printf("%s", caca[0]->Get_Name());
-	printf("%s", caca[0]->Get_Description());*/
+
 
 
 	system("pause");
