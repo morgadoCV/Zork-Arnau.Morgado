@@ -124,7 +124,7 @@ public:
 		}
 		else if (num_elements == NULL)
 		{
-			printf("Ets un matat\n");
+			printf("Empty vector\n");
 			return false;
 		}
 
