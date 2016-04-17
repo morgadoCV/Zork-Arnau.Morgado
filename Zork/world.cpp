@@ -439,53 +439,140 @@ int World::checkImput()
 			printf("You don't have this item.\n");
 		}
 	}
-	/*
-	else if (comand == "look wand")
+	else if (comand == "i"||comand=="inventory"||comand=="inv")
 	{
-		printf("\n%s\n",items[0]->Get_Name());
-		printf("\n%s\n", items[0]->Get_Description());
+		for (int i = 0; i < 11; i++)
+		{
+			if (player[0]->inventory[i])
+			{
+				printf("%s\n", items[i]->Get_Name());
+			}
+		}
+		
+	}
+	
+	else if (comand == "look wand")
+	{ 
+		if (player[0]->inventory[0] || rooms[player[0]->situation]->room_items[0])
+		{
+			printf("\n%s\n", items[0]->Get_Description()); 
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
 	else if (comand == "look instakill book")
 	{
-		printf("\n%s\n", items[1]->Get_Name());
-		printf("\n%s\n", items[1]->Get_Description());
+		if (player[0]->inventory[1] || rooms[player[0]->situation]->room_items[1])
+		{
+			printf("\n%s\n", items[1]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
 	else if (comand == "look layer")
 	{
-		printf("\n%s\n", items[2]->Get_Name());
-		printf("\n%s\n", items[2]->Get_Description());
+		if (player[0]->inventory[2] || rooms[player[0]->situation]->room_items[2])
+		{
+			printf("\n%s\n", items[2]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
 	else if (comand == "look time turner")
 	{
-		printf("\n%s\n", items[3]->Get_Name());
-		printf("\n%s\n", items[3]->Get_Description());
+		if (player[0]->inventory[3] || rooms[player[0]->situation]->room_items[3])
+		{
+			printf("\n%s\n", items[3]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
-	else if (comand == "keys")
+	else if (comand == "look keys")
 	{
-		printf("\n%s\n", items[4]->Get_Name());
-		printf("\n%s\n", items[4]->Get_Description());
+		if (player[0]->inventory[4] || rooms[player[0]->situation]->room_items[4])
+		{
+			printf("\n%s\n", items[4]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
-	else if (comand == "look lamp")
+	else if (comand == "look lantern")
 	{
-		printf("\n%s\n", items[5]->Get_Name());
-		printf("\n%s\n", items[5]->Get_Description());
+		if (player[0]->inventory[5] || rooms[player[0]->situation]->room_items[5])
+		{
+			printf("\n%s\n", items[5]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
 	else if (comand == "look sword")
 	{
-		printf("\n%s\n", items[6]->Get_Name());
-		printf("\n%s\n", items[6]->Get_Description());
+		if (player[0]->inventory[6] || rooms[player[0]->situation]->room_items[6])
+		{
+			printf("\n%s\n", items[6]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
 	else if (comand == "look photo")
 	{
-		printf("\n%s\n", items[7]->Get_Name());
-		printf("\n%s\n", items[7]->Get_Description());
+		if (player[0]->inventory[7] || rooms[player[0]->situation]->room_items[7])
+		{
+			printf("\n%s\n", items[7]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
 	else if (comand == "look broom")
 	{
-		printf("\n%s\n", items[8]->Get_Name());
-		printf("\n%s\n", items[8]->Get_Description());
+		if (player[0]->inventory[8] || rooms[player[0]->situation]->room_items[8])
+		{
+			printf("\n%s\n", items[8]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
 	}
-	*/
+	else if (comand == "look heavy layer")
+	{
+		if (player[0]->inventory[9] || rooms[player[0]->situation]->room_items[9])
+		{
+			printf("\n%s\n", items[9]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
+	}
+	else if (comand == "look stun book")
+	{
+		if (player[0]->inventory[10] || rooms[player[0]->situation]->room_items[10])
+		{
+			printf("\n%s\n", items[10]->Get_Description());
+		}
+		else
+		{
+			printf("You can't see this item.");
+		}
+	}
+	
 	
 	else
 	{

@@ -19,3 +19,4 @@ void Player::modifybool(int a)
 	if (inventory[a] == false){ inventory[a] = true; }
 
 }
+
