@@ -181,7 +181,7 @@ int World::checkImput()
 			player[0]->modifybool(0);
 			printf("You have picked the wand.\n");
 			rooms[player[0]->situation]->room_items[0] = false;
-			player[0]->modifyattack(50);
+			
 		}
 		else
 		{
@@ -330,10 +330,14 @@ int World::checkImput()
 	{
 		if (player[0]->inventory[0])
 		{
-			player[0]->inventory[0] = false;
-			printf("You have droped the wand.\n");
-			rooms[player[0]->situation]->room_items[0] = true;
-			player[0]->modifyattack2(50);
+			if (player[0]->equipement[0]=false)
+			{
+				player[0]->inventory[0] = false;
+				printf("You have droped the wand.\n");
+				rooms[player[0]->situation]->room_items[0] = true;
+			}
+			else{ printf("You have your wand equip.\n"); }
+		
 		}
 		else
 		{
@@ -345,7 +349,7 @@ int World::checkImput()
 		if (player[0]->inventory[1])
 		{
 			player[0]->inventory[1] = false;
-			printf("You have droped the wand.\n");
+			printf("You have droped the isntakill book.\n");
 			rooms[player[0]->situation]->room_items[1] = true;
 			player[0]->modifyattack2(500);
 		}
@@ -358,10 +362,14 @@ int World::checkImput()
 	{
 		if (player[0]->inventory[2])
 		{
-			player[0]->inventory[2] = false;
-			printf("You have droped the wand.\n");
-			rooms[player[0]->situation]->room_items[2] = true;
-			player[0]->modifydefense2(300);
+			if (player[0]->equipement[2]=false)
+			{
+				player[0]->inventory[2] = false;
+				printf("You have droped the layer.\n");
+				rooms[player[0]->situation]->room_items[2] = true;
+			}
+			else{ printf("You hace the layer equip.\n"); }
+		
 		}
 		else
 		{
@@ -373,7 +381,7 @@ int World::checkImput()
 		if (player[0]->inventory[3])
 		{
 			player[0]->inventory[3] = false;
-			printf("You have droped the wand.\n");
+			printf("You have droped the time turner.\n");
 			rooms[player[0]->situation]->room_items[3] = true;
 		}
 		else
@@ -381,12 +389,12 @@ int World::checkImput()
 			printf("You don't have this item.\n");
 		}
 	}
-	else if (comand == "keys")
+	else if (comand == "drop keys")
 	{
 		if (player[0]->inventory[4])
 		{
 			player[0]->inventory[4] = false;
-			printf("You have droped the wand.\n");
+			printf("You have droped the keys.\n");
 			rooms[player[0]->situation]->room_items[4] = true;
 		}
 		else
@@ -399,7 +407,7 @@ int World::checkImput()
 		if (player[0]->inventory[5])
 		{
 			player[0]->inventory[5] = false;
-			printf("You have droped the wand.\n");
+			printf("You have droped the lantern.\n");
 			rooms[player[0]->situation]->room_items[5] = true;
 		}
 		else
@@ -411,9 +419,13 @@ int World::checkImput()
 	{
 		if (player[0]->inventory[6])
 		{
-			player[0]->inventory[6] = false;
-			printf("You have droped the wand.\n");
-			rooms[player[0]->situation]->room_items[6] = true;
+			if (player[0]->equipement[1]=false)
+			{
+				player[0]->inventory[6] = false;
+				printf("You have droped the sword.\n");
+				rooms[player[0]->situation]->room_items[6] = true;
+			}
+			else{ printf("You have the sword equip.\n"); }
 		}
 		else
 		{
@@ -425,7 +437,7 @@ int World::checkImput()
 		if (player[0]->inventory[7])
 		{
 			player[0]->inventory[7] = false;
-			printf("You have droped the wand.\n");
+			printf("You have droped the photo.\n");
 			rooms[player[0]->situation]->room_items[7] = true;
 		}
 		else
@@ -438,7 +450,7 @@ int World::checkImput()
 		if (player[0]->inventory[10])
 		{
 			player[0]->inventory[10] = false;
-			printf("You have droped the wand.\n");
+			printf("You have droped the stun book.\n");
 			rooms[player[0]->situation]->room_items[10] = true;
 			player[0]->modifyattack2(50);
 		}
@@ -585,6 +597,66 @@ int World::checkImput()
 	{
 		printf("\nAttack->%i\n", player[0]->giveattack());
 		printf("\nDefense->%i\n", player[0]->givedefense());
+	}
+	else if (comand == "equip wand")
+	{
+		if (player[0]->inventory[0])
+		{
+			player[0]->equipement[0] = true;
+			player[0]->modifyattack(50);
+			printf("Wand equip.\n");
+		}
+		else{ printf("There is not a wand on your inventory.\n"); }
+	}
+	else if (comand == "equip sword")
+	{
+		if (player[0]->inventory[6])
+		{
+			player[0]->equipement[1] = true;
+			player[0]->modifyattack(15);
+			printf("Sword equip.\n");
+		}
+		else{ printf("There is not a wand on your inventory.\n"); }
+	}
+	else if (comand == "equip layer")
+	{
+		if (player[0]->inventory[2])
+		{
+			player[0]->equipement[2] = true;
+			player[0]->modifydefense(300);
+			printf("Layer equip.\n");
+		}
+		else{ printf("There is not a layer on your inventory.\n"); }
+	}
+	else if (comand == "unequip wand")
+	{
+		if (player[0]->equipement[0])
+		{
+			player[0]->equipement[0] = false;
+			player[0]->modifyattack2(50);
+			printf("Wand unequip.\n");
+		}
+		else{ printf("Wand not equip.\n"); }
+	}
+	else if (comand == "unequip sword")
+	{
+		if (player[0]->equipement[1])
+		{
+			player[0]->equipement[1] = false;
+			player[0]->modifyattack2(15);
+			printf("Sword unequip.\n");
+		}
+		else{ printf("Sword not equip.\n"); }
+	}
+	else if (comand == "unequip layer")
+	{
+		if (player[0]->equipement[2])
+		{
+			player[0]->equipement[2] = false;
+			player[0]->modifydefense2(300);
+			printf("Layer unequip.\n");
+		}
+	else{ printf("Layer not equip.\n"); }
 	}
 	
 	else
