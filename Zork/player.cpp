@@ -9,7 +9,7 @@ Player::Player(const char* str1, const char* str2,int position):Entity(str1,str2
 	{
 		inventory.push_back(false);
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		equipement.push_back(false);
 	}
@@ -56,3 +56,4 @@ void Player::modifydefense2(int def)
 {
 	defense -= def;
 }
+

@@ -6,8 +6,10 @@
 
 class Player:public Entity
 {
+private:
+	int attack, defense;
 public:
-	int situation,attack, defense;
+	int situation;
 	mVector<bool> inventory;
 	mVector<bool> equipement;
 
