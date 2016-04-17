@@ -589,35 +589,50 @@ void World::moveNorth(){
 	{
 		player[0]->situation = exits[1]->destiny3;
 		printf("\n%s\n", rooms[6]->Get_Name());
-		printf("\n%s\n", rooms[6]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[6]->room_items[i]==true)
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 2)
 	{
 		player[0]->situation = exits[2]->destiny3;
 		printf("\n%s\n", rooms[1]->Get_Name());
-		printf("\n%s\n", rooms[1]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[1]->room_items[i])
+			printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 4)
 	{
 		player[0]->situation = exits[4]->destiny3;
-		printf("\n%s\n", rooms[2]->Get_Name());
-		printf("\n%s\n", rooms[2]->Get_Description());
+		printf("%s\n", rooms[2]->Get_Name());
+		for (int i = 0; i < 11; i++){
+			if (rooms[2]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 5)
 	{
 		player[0]->situation = exits[5]->destiny3;
 		printf("\n%s\n", rooms[4]->Get_Name());
-		printf("\n%s\n", rooms[4]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[4]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 8)
 	{
 		player[0]->situation = exits[8]->destiny3;
 		printf("\n%s\n", rooms[7]->Get_Name());
-		printf("\n%s\n", rooms[7]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[7]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else
@@ -633,28 +648,40 @@ void World::moveSouth()
 	{
 		player[0]->situation = exits[1]->destiny4;
 		printf("\n%s\n", rooms[2]->Get_Name());
-		printf("\n%s\n", rooms[2]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[2]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 6)
 	{
 		player[0]->situation = exits[6]->destiny4;
 		printf("\n%s\n", rooms[1]->Get_Name());
-		printf("\n%s\n", rooms[1]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[1]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 2)
 	{
 		player[0]->situation = exits[2]->destiny4;;
 		printf("\n%s\n", rooms[4]->Get_Name());
-		printf("\n%s\n", rooms[4]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[4]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 4)
 	{
 		player[0]->situation = exits[4]->destiny4;
 		printf("\n%s\n", rooms[5]->Get_Name());
-		printf("\n%s\n", rooms[5]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[5]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 7)
@@ -662,7 +689,10 @@ void World::moveSouth()
 		if (rooms[7]->openfountain == 1){
 			player[0]->situation = exits[7]->destiny4;
 			printf("\n%s\n", rooms[8]->Get_Name());
-			printf("\n%s\n", rooms[8]->Get_Description());
+			for (int i = 0; i < 11; i++){
+				if (rooms[8]->room_items[i])
+					printf("%s\n", items[i]->Get_Name());
+			}
 			return;
 		}
 		if (rooms[7]->openfountain == 0){
@@ -684,7 +714,10 @@ void World::moveEast()
 	{
 		player[0]->situation = exits[0]->destiny;
 		printf("\n%s\n", rooms[1]->Get_Name());
-		printf("\n%s\n", rooms[1]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[1]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 1)
@@ -693,7 +726,10 @@ void World::moveEast()
 		{
 			player[0]->situation = exits[1]->destiny;
 			printf("\n%s\n", rooms[3]->Get_Name());
-			printf("\n%s\n", rooms[3]->Get_Description());
+			for (int i = 0; i < 11; i++){
+				if (rooms[3]->room_items[i])
+					printf("%s\n", items[i]->Get_Name());
+			}
 			return;
 		}
 		else if (rooms[1]->door == 0)
@@ -705,21 +741,30 @@ void World::moveEast()
 	{
 		player[0]->situation = exits[3]->destiny;
 		printf("\n%s\n", rooms[10]->Get_Name());
-		printf("\n%s\n", rooms[10]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[10]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 2)
 	{
 		player[0]->situation = exits[2]->destiny;
 		printf("\n%s\n", rooms[7]->Get_Name());
-		printf("\n%s\n", rooms[7]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[7]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 5)
 	{
 		player[0]->situation = exits[5]->destiny;
 		printf("\n%s\n", rooms[9]->Get_Name());
-		printf("\n%s\n", rooms[9]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[9]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else
@@ -734,7 +779,10 @@ void World::moveWest()
 	{
 		player[0]->situation = exits[1]->destiny2;
 		printf("\n%s\n", rooms[0]->Get_Name());
-		printf("\n%s\n", rooms[0]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[0]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 3)
@@ -743,7 +791,10 @@ void World::moveWest()
 		{
 			player[0]->situation = exits[3]->destiny2;
 			printf("\n%s\n", rooms[1]->Get_Name());
-			printf("\n%s\n", rooms[1]->Get_Description());
+			for (int i = 0; i < 11; i++){
+				if (rooms[1]->room_items[i])
+					printf("%s\n", items[i]->Get_Name());
+			}
 			return;
 		}
 		else if (rooms[3]->door == 0)
@@ -756,21 +807,30 @@ void World::moveWest()
 	{
 		player[0]->situation = exits[10]->destiny2;
 		printf("\n%s\n", rooms[3]->Get_Name());
-		printf("\n%s\n", rooms[3]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[3]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 7)
 	{
 		player[0]->situation = exits[7]->destiny2;
 		printf("\n%s\n", rooms[2]->Get_Name());
-		printf("\n%s\n", rooms[2]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[2]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else if (player[0]->situation == 9)
 	{
 		player[0]->situation = exits[9]->destiny2;
 		printf("\n%s\n", rooms[5]->Get_Name());
-		printf("\n%s\n", rooms[5]->Get_Description());
+		for (int i = 0; i < 11; i++){
+			if (rooms[5]->room_items[i])
+				printf("%s\n", items[i]->Get_Name());
+		}
 		return;
 	}
 	else
