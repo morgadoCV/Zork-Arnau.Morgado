@@ -9,6 +9,7 @@ public:
 	int destiny,destiny2,destiny3,destiny4;
 public:
 	Exit(const char* str1, const char*str2, int a, int b, int c, int d);
+	~Exit();
 };
 
 

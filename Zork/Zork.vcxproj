@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="exit.cpp" />
+    <ClCompile Include="item.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="world.cpp" />
     <ClCompile Include="main.cpp" />
@@ -74,6 +75,7 @@
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="exit.h" />
+    <ClInclude Include="item.h" />
     <ClInclude Include="mystring.h" />
     <ClInclude Include="myvector.h" />
     <ClInclude Include="player.h" />

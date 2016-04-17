@@ -7,3 +7,7 @@ Exit::Exit(const char* str1, const char*str2, int a, int b, int c, int d) :Entit
 	destiny3 = c;//north
 	destiny4 = d;//south
 }
+
+Exit::~Exit()
+{
+}

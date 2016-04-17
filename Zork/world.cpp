@@ -6,6 +6,7 @@
 #include"exit.h"
 #include"entity.h"
 #include"mystring.h"
+#include"item.h"
 using namespace std;
 
 
@@ -59,7 +60,18 @@ void World::createWorld()
 	exits.push_back(new Exit("", "West to Dark Arts room",11 ,3 ,11 ,11 ));//darkwizard 10
 	
 		
-		
+	//items
+	items.push_back(new Item("Wand", "It seems really old."));
+	items.push_back(new Item("Instakill Book", "Seems like you can read it."));
+	items.push_back(new Item("Layer", "Maybe you can equip it."));
+	items.push_back(new Item("Time Turner", "It gives you the hability to teleport throw rooms you have been before."));
+	items.push_back(new Item("Keys", "Just some keys."));
+	items.push_back(new Item("Lamp", "It will show you the light."));
+	items.push_back(new Item("Goddreic's Griffindor sword", "Some books say that it can kill magic creatures."));
+	items.push_back(new Item("Photo", "It is an old photo of you and your parents, what is it doing here?."));
+	items.push_back(new Item("Broom", "An old Broom, maybe you can fly with it, who knows?"));
+
+
 }
 
 

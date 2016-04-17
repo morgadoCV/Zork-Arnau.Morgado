@@ -15,6 +15,7 @@ private:
 	mVector<Player*> player;
 	mVector<Room*> rooms;
 	mVector<Exit*> exits;
+	mVector<Item*> items;
 	char* input = nullptr; 
 	
 
