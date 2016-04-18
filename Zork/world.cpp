@@ -625,6 +625,7 @@ int World::checkImput()
 	{
 		printf("\nAttack->%i\n", player[0]->giveattack());
 		printf("\nDefense->%i\n", player[0]->givedefense());
+		return 0;
 	}
 	else if (comand == "equip wand")
 	{
