@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="exit.cpp" />
+    <ClCompile Include="hole.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="world.cpp" />
@@ -75,6 +76,7 @@
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="exit.h" />
+    <ClInclude Include="hole.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="mystring.h" />
     <ClInclude Include="myvector.h" />

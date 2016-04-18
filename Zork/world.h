@@ -17,6 +17,7 @@ private:
 	mVector<Exit*> exits;
 	mVector<Item*> items;
 	char* input = nullptr; 
+	mVector<Entity*> hole;
 	
 
 public:

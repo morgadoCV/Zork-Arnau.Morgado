@@ -7,6 +7,7 @@
 #include"entity.h"
 #include"mystring.h"
 #include"item.h"
+#include"hole.h"
 using namespace std;
 
 
@@ -85,6 +86,10 @@ void World::createWorld()
 	rooms[8]->set_items(1, 7);
 	rooms[9]->set_items(4, 6);
 	rooms[10]->set_items(-1, -1);
+
+	//hole
+
+	hole.push_back(new Entity("There is a hole", "Seems like you can put thinks into it",0));
 	
 
 }
@@ -93,8 +98,8 @@ void World::createWorld()
 //checkimput
 void World::getinput()
 {
-	input = new char[25];
-	gets_s(input, 25);
+	input = new char[35];
+	gets_s(input, 35);
 }
 
 int World::checkImput()
@@ -330,14 +335,10 @@ int World::checkImput()
 	{
 		if (player[0]->inventory[0])
 		{
-			if (player[0]->equipement[0]=false)
-			{
-				player[0]->inventory[0] = false;
-				printf("You have droped the wand.\n");
-				rooms[player[0]->situation]->room_items[0] = true;
-			}
-			else{ printf("You have your wand equip.\n"); }
-		
+			player[0]->inventory[0] = false;
+			printf("You have droped the wand.\n");
+			rooms[player[0]->situation]->room_items[0] = true;
+			
 		}
 		else
 		{
@@ -362,13 +363,10 @@ int World::checkImput()
 	{
 		if (player[0]->inventory[2])
 		{
-			if (player[0]->equipement[2]=false)
-			{
-				player[0]->inventory[2] = false;
-				printf("You have droped the layer.\n");
-				rooms[player[0]->situation]->room_items[2] = true;
-			}
-			else{ printf("You hace the layer equip.\n"); }
+			player[0]->inventory[2] = false;
+			printf("You have droped the layer.\n");
+			rooms[player[0]->situation]->room_items[2] = true;
+			
 		
 		}
 		else
@@ -419,13 +417,10 @@ int World::checkImput()
 	{
 		if (player[0]->inventory[6])
 		{
-			if (player[0]->equipement[1]=false)
-			{
-				player[0]->inventory[6] = false;
-				printf("You have droped the sword.\n");
-				rooms[player[0]->situation]->room_items[6] = true;
-			}
-			else{ printf("You have the sword equip.\n"); }
+			player[0]->inventory[6] = false;
+			printf("You have droped the sword.\n");
+			rooms[player[0]->situation]->room_items[6] = true;
+			
 		}
 		else
 		{
@@ -603,6 +598,7 @@ int World::checkImput()
 		if (player[0]->inventory[0])
 		{
 			player[0]->equipement[0] = true;
+			player[0]->inventory[0] = false;
 			player[0]->modifyattack(50);
 			printf("Wand equip.\n");
 		}
@@ -613,6 +609,7 @@ int World::checkImput()
 		if (player[0]->inventory[6])
 		{
 			player[0]->equipement[1] = true;
+			player[0]->inventory[6] = false;
 			player[0]->modifyattack(15);
 			printf("Sword equip.\n");
 		}
@@ -623,6 +620,7 @@ int World::checkImput()
 		if (player[0]->inventory[2])
 		{
 			player[0]->equipement[2] = true;
+			player[0]->inventory[2] = false;
 			player[0]->modifydefense(300);
 			printf("Layer equip.\n");
 		}
@@ -632,6 +630,7 @@ int World::checkImput()
 	{
 		if (player[0]->equipement[0])
 		{
+			player[0]->inventory[0] = true;
 			player[0]->equipement[0] = false;
 			player[0]->modifyattack2(50);
 			printf("Wand unequip.\n");
@@ -643,6 +642,7 @@ int World::checkImput()
 		if (player[0]->equipement[1])
 		{
 			player[0]->equipement[1] = false;
+			player[0]->inventory[6] = true;
 			player[0]->modifyattack2(15);
 			printf("Sword unequip.\n");
 		}
@@ -653,10 +653,174 @@ int World::checkImput()
 		if (player[0]->equipement[2])
 		{
 			player[0]->equipement[2] = false;
+			player[0]->inventory[2] = true;
 			player[0]->modifydefense2(300);
 			printf("Layer unequip.\n");
 		}
-	else{ printf("Layer not equip.\n"); }
+	   else{ printf("Layer not equip.\n"); }
+	}
+	else if (comand == "put wand into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[0])
+		{
+			player[0]->inventory[0] = false;
+			hole[0]->inv[0] = true;
+		}
+	}
+	else if (comand == "put instakill book into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[1])
+		{
+			player[0]->inventory[1] = false;
+			hole[0]->inv[1] = true;
+		}
+	}
+	else if (comand == "put layer into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[2])
+		{
+			player[0]->inventory[2] = false;
+			hole[0]->inv[2] = true;
+		}
+	}
+	else if (comand == "put keys into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[4])
+		{
+			player[0]->inventory[4] = false;
+			hole[0]->inv[4] = true;
+		}
+	}
+	else if (comand == "put lantern into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[5])
+		{
+			player[0]->inventory[5] = false;
+			hole[0]->inv[5] = true;
+		}
+	}
+	else if (comand == "put sword into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[6])
+		{
+			player[0]->inventory[6] = false;
+			hole[0]->inv[6] = true;
+		}
+	}
+	else if (comand == "put photo into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[7])
+		{
+			player[0]->inventory[7] = false;
+			hole[0]->inv[7] = true;
+		}
+	}
+	else if (comand == "put stun book into hole")
+	{
+		if (player[0]->situation == 0 && player[0]->inventory[10])
+		{
+			player[0]->inventory[10] = false;
+			hole[0]->inv[10] = true;
+		}
+	}
+	else if (comand == "get wand from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[0])
+			{
+				player[0]->inventory[0] = true;
+				hole[0]->inv[0] = false;
+			}
+		}
+	}
+	else if (comand == "get instakill book from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[1])
+			{
+				player[0]->inventory[1] = true;
+				hole[0]->inv[1] = false;
+			}
+		}
+	}
+	else if (comand == "get layer from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[2])
+			{
+				player[0]->inventory[2] = true;
+				hole[0]->inv[2] = false;
+			}
+		}
+	}
+	else if (comand == "get keys from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[4])
+			{
+				player[0]->inventory[4] = true;
+				hole[0]->inv[4] = false;
+			}
+		}
+	}
+	else if (comand == "get lantern from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[5])
+			{
+				player[0]->inventory[5] = true;
+				hole[0]->inv[5] = false;
+			}
+		}
+	}
+	else if (comand == "get sword from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[6])
+			{
+				player[0]->inventory[6] = true;
+				hole[0]->inv[6] = false;
+			}
+		}
+	}
+	else if (comand == "get photo from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[7])
+			{
+				player[0]->inventory[7] = true;
+				hole[0]->inv[7] = false;
+			}
+		}
+	}
+	else if (comand == "get stun book from hole")
+	{
+		if (player[0]->situation == 0)
+		{
+			if (hole[0]->inv[10])
+			{
+				player[0]->inventory[10] = true;
+				hole[0]->inv[10] = false;
+			}
+		}
+	}
+	else if (comand == "hole")
+	{
+		printf("\nHole inv:\n");
+		for (int i = 0; i < 11; i++)
+		{
+			if (hole[0]->inv[i])
+			{
+				printf("%s\n",items[i]->Get_Name());
+			}
+		}
 	}
 	
 	else
@@ -864,6 +1028,7 @@ void World::moveWest()
 	{
 		player[0]->situation = exits[1]->destiny2;
 		printf("\n%s\n", rooms[0]->Get_Name());
+		printf("\nThere is a hole. %s\n", hole[0]->Get_Description());
 		for (int i = 0; i < 11; i++){
 			if (rooms[0]->room_items[i])
 				printf("%s\n", items[i]->Get_Name());
@@ -953,7 +1118,13 @@ void World::giveHelp() const
 	printf("\nUse command 'look' + 'north','south','east','west' to get info.\n");
 	printf("\nUse command 'help' to get help.\n");
 	printf("\nUse command 'open' to open closed doors.\n");
-	printf("\nUse command 'close' to close the door you oppened.\n\n");
+	printf("\nUse command 'close' to close the door you oppened.\n");
+	printf("\nUse command 'put __ into hole/get__from hole to use the hole.\n");
+	printf("\nUse command 'pick/drop <item>' to pick and drop items.\n");
+	printf("\nUse command 'equip/unequip<item> to equip and unequip items.\n");
+	printf("\nUse command 'hole' to look into the hole.\n");
+	printf("\nUse command 'inv/inventory/i' to look into your inventory.\n");
+	printf("\nUse command 'stats' to see your stats.\n\n");
 }
 
 void World::openDoor()

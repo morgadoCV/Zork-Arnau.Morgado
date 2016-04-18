@@ -12,6 +12,7 @@ public:
 	int situation;
 	mVector<bool> inventory;
 	mVector<bool> equipement;
+	
 
 public:
 	Player(const char* str1, const char* str2, int position);
