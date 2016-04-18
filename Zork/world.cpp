@@ -192,6 +192,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	
 	else if (comand == "pick instakill book")
@@ -204,10 +205,12 @@ int World::checkImput()
 			rooms[player[0]->situation]->room_items[1] = false;
 			player[0]->modifyattack(500);
 		}
+		
 		else
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick layer")
 	{
@@ -223,6 +226,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick time turner")
 	{
@@ -237,6 +241,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick keys")
 	{
@@ -251,6 +256,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick lantern")
 	{
@@ -265,6 +271,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick sword")
 	{
@@ -279,6 +286,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick photo")
 	{
@@ -293,6 +301,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick broom")
 	{
@@ -304,6 +313,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick heavy layer")
 	{
@@ -315,6 +325,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "pick stun book")
 	{
@@ -330,6 +341,7 @@ int World::checkImput()
 		{
 			printf("You can't find this item at this room.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop wand")
 	{
@@ -344,6 +356,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop instakill book")
 	{
@@ -358,6 +371,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop layer")
 	{
@@ -373,6 +387,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop time turner")
 	{
@@ -386,6 +401,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop keys")
 	{
@@ -399,6 +415,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop lantern")
 	{
@@ -412,6 +429,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop sword")
 	{
@@ -426,6 +444,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop photo")
 	{
@@ -439,6 +458,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "drop stun book")
 	{
@@ -453,6 +473,7 @@ int World::checkImput()
 		{
 			printf("You don't have this item.\n");
 		}
+		return 0;
 	}
 	else if (comand == "i"||comand=="inventory"||comand=="inv")
 	{
@@ -463,6 +484,7 @@ int World::checkImput()
 				printf("%s\n", items[i]->Get_Name());
 			}
 		}
+		return 0;
 		
 	}
 	
@@ -476,6 +498,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look instakill book")
 	{
@@ -488,6 +511,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look layer")
 	{
@@ -499,6 +523,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look time turner")
 	{
@@ -510,6 +535,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look keys")
 	{
@@ -521,6 +547,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look lantern")
 	{
@@ -532,6 +559,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look sword")
 	{
@@ -543,6 +571,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look photo")
 	{
@@ -554,6 +583,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look broom")
 	{
@@ -565,6 +595,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look heavy layer")
 	{
@@ -576,6 +607,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand == "look stun book")
 	{
@@ -587,6 +619,7 @@ int World::checkImput()
 		{
 			printf("You can't see this item.");
 		}
+		return 0;
 	}
 	else if (comand=="stats")
 	{
@@ -603,6 +636,7 @@ int World::checkImput()
 			printf("Wand equip.\n");
 		}
 		else{ printf("There is not a wand on your inventory.\n"); }
+		return 0;
 	}
 	else if (comand == "equip sword")
 	{
@@ -614,6 +648,7 @@ int World::checkImput()
 			printf("Sword equip.\n");
 		}
 		else{ printf("There is not a wand on your inventory.\n"); }
+		return 0;
 	}
 	else if (comand == "equip layer")
 	{
@@ -625,6 +660,7 @@ int World::checkImput()
 			printf("Layer equip.\n");
 		}
 		else{ printf("There is not a layer on your inventory.\n"); }
+		return 0;
 	}
 	else if (comand == "unequip wand")
 	{
@@ -636,6 +672,7 @@ int World::checkImput()
 			printf("Wand unequip.\n");
 		}
 		else{ printf("Wand not equip.\n"); }
+		return 0;
 	}
 	else if (comand == "unequip sword")
 	{
@@ -647,6 +684,7 @@ int World::checkImput()
 			printf("Sword unequip.\n");
 		}
 		else{ printf("Sword not equip.\n"); }
+		return 0;
 	}
 	else if (comand == "unequip layer")
 	{
@@ -658,6 +696,7 @@ int World::checkImput()
 			printf("Layer unequip.\n");
 		}
 	   else{ printf("Layer not equip.\n"); }
+	   return 0;
 	}
 	else if (comand == "put wand into hole")
 	{
@@ -666,6 +705,7 @@ int World::checkImput()
 			player[0]->inventory[0] = false;
 			hole[0]->inv[0] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put instakill book into hole")
 	{
@@ -674,6 +714,7 @@ int World::checkImput()
 			player[0]->inventory[1] = false;
 			hole[0]->inv[1] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put layer into hole")
 	{
@@ -682,6 +723,7 @@ int World::checkImput()
 			player[0]->inventory[2] = false;
 			hole[0]->inv[2] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put keys into hole")
 	{
@@ -690,6 +732,7 @@ int World::checkImput()
 			player[0]->inventory[4] = false;
 			hole[0]->inv[4] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put lantern into hole")
 	{
@@ -698,6 +741,7 @@ int World::checkImput()
 			player[0]->inventory[5] = false;
 			hole[0]->inv[5] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put sword into hole")
 	{
@@ -706,6 +750,7 @@ int World::checkImput()
 			player[0]->inventory[6] = false;
 			hole[0]->inv[6] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put photo into hole")
 	{
@@ -714,6 +759,7 @@ int World::checkImput()
 			player[0]->inventory[7] = false;
 			hole[0]->inv[7] = true;
 		}
+		return 0;
 	}
 	else if (comand == "put stun book into hole")
 	{
@@ -722,6 +768,7 @@ int World::checkImput()
 			player[0]->inventory[10] = false;
 			hole[0]->inv[10] = true;
 		}
+		return 0;
 	}
 	else if (comand == "get wand from hole")
 	{
@@ -733,6 +780,7 @@ int World::checkImput()
 				hole[0]->inv[0] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get instakill book from hole")
 	{
@@ -744,6 +792,7 @@ int World::checkImput()
 				hole[0]->inv[1] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get layer from hole")
 	{
@@ -755,6 +804,7 @@ int World::checkImput()
 				hole[0]->inv[2] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get keys from hole")
 	{
@@ -766,6 +816,7 @@ int World::checkImput()
 				hole[0]->inv[4] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get lantern from hole")
 	{
@@ -777,6 +828,7 @@ int World::checkImput()
 				hole[0]->inv[5] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get sword from hole")
 	{
@@ -788,6 +840,7 @@ int World::checkImput()
 				hole[0]->inv[6] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get photo from hole")
 	{
@@ -799,6 +852,7 @@ int World::checkImput()
 				hole[0]->inv[7] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "get stun book from hole")
 	{
@@ -810,6 +864,7 @@ int World::checkImput()
 				hole[0]->inv[10] = false;
 			}
 		}
+		return 0;
 	}
 	else if (comand == "hole")
 	{
@@ -821,6 +876,7 @@ int World::checkImput()
 				printf("%s\n",items[i]->Get_Name());
 			}
 		}
+		return 0;
 	}
 	
 	else
