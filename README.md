@@ -15,3 +15,10 @@ Use the commands:
 - "open"      -->open doors.
 - "quit"      -->quit
 - "talk parsel" -->use it while you are at the bathroom ;)
+- "get from/put into <hole>" to put your think into a hole at the Starting Room.
+- "pick/drop <item>".
+- "equip/unequip<item>".
+- "look<item>" --> gives item description.
+- "inv/i/inventory" 
+- "stats"
+- "hole"
