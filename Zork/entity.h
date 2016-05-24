@@ -2,6 +2,7 @@
 #define _ENTITY_
 #include"mystring.h"
 #include"myvector.h"
+#include"mylist.h"
 
 class Entity
 {
@@ -10,8 +11,10 @@ private:
 	mString description;
 	int position;
 	
+	
 public:
 	mVector<bool> inv;
+	mList <Entity*> list;
 public:
 	Entity();
 	Entity(const char* str1, const char* str2);

@@ -34,6 +34,8 @@ void World::createWorld()
 	
 	
 	//rooms
+	
+	//
 	rooms.push_back(new Room("Starting Room.\n", "You can see a room when you look at east.There is a broom."));
 	rooms.push_back(new Room("3rd Floor.\n", "There are stair going down on south and a closed room east, it seems very cold.\n"));
 	rooms.push_back(new Room("2nd floor.\n", "You can go east to the bathroom and south downstairs to 1st floor.\nThere is a lantern on the floor.\n"));
@@ -45,7 +47,7 @@ void World::createWorld()
 	rooms.push_back(new Room("Chamber of Secrets.\n", "There is a BASILISK.There is also a book on the floor.\n"));
 	rooms.push_back(new Room("Transformation room.\n", "There is a sword next to the table.\n"));
 	rooms.push_back(new Room("Dark wizard room.\n", "Is there a room here? Since when? A wizard is staring at you with his wand on \nthe right hand.\n"));
-
+	
 	
 	 //exits
 	exits.push_back(new Exit("", "East to 3rd Floor.\n", 1, 11, 11, 11));//starting 0

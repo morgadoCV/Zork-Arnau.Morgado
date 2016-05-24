@@ -78,6 +78,7 @@
     <ClInclude Include="exit.h" />
     <ClInclude Include="hole.h" />
     <ClInclude Include="item.h" />
+    <ClInclude Include="mylist.h" />
     <ClInclude Include="mystring.h" />
     <ClInclude Include="myvector.h" />
     <ClInclude Include="player.h" />
