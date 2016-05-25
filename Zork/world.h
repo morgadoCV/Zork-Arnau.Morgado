@@ -12,10 +12,11 @@ class Item;
 class World:public Entity
 {
 private:
-	mVector<Player*> player;
-	mVector<Room*> rooms;
-	mVector<Exit*> exits;
-	mVector<Item*> items;
+	mVector<Entity*> entities;
+	//mVector<Player*> player;
+	Player* player;
+	//mVector<Exit*> exits;
+	//mVector<Item*> items;
 	char* input = nullptr; 
 	mVector<Entity*> hole;
 	
