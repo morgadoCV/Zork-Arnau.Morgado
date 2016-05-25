@@ -1,10 +1,8 @@
 #include"player.h"
 
-Player::Player(const char* str1, const char* str2,int position):Entity(str1,str2)
+Player::Player(const char* str1, const char* str2,int position,int attack, int defense):Creature(str1,str2,attack,defense)
 {
 	situation = position;
-	attack = 100;
-	defense = 50;
 	for (int i = 0; i < 11; i++)
 	{
 		inventory.push_back(false);
@@ -27,33 +25,5 @@ void Player::modifybool(int a)
 
 }
 
-void Player::modifyattack(int at)
-{
-	attack += at;
-}
 
-void Player::modifydefense(int def)
-{
-	defense += def;
-}
-
-int Player::giveattack()
-{
-	return attack;
-}
-
-int Player::givedefense()
-{
-	return defense;
-}
-
-void Player::modifyattack2(int at)
-{
-	attack -= at;
-}
-
-void Player::modifydefense2(int def)
-{
-	defense -= def;
-}
 

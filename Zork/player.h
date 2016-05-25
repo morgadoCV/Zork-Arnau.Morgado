@@ -3,11 +3,11 @@
 
 #include"entity.h"
 #include"myvector.h"
+#include"creature.h"
 
-class Player:public Entity
+class Player:public Creature
 {
-private:
-	int attack, defense;
+
 public:
 	int situation;
 	mVector<bool> inventory;
@@ -15,15 +15,15 @@ public:
 	
 
 public:
-	Player(const char* str1, const char* str2, int position);
+	Player(const char* str1, const char* str2, int position,int attack, int defense);
 	~Player();
 	void modifybool(int a);
-	void modifyattack(int at);
-	void modifyattack2(int at);
-	void modifydefense(int def);
-	void modifydefense2(int def);
-	int giveattack();
-	int givedefense();
+	//void modifyattack(int at);
+	//void modifyattack2(int at);
+	//void modifydefense(int def);
+	//void modifydefense2(int def);
+	//int giveattack();
+	//int givedefense();
 };
 
 

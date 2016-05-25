@@ -64,24 +64,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basilisk.cpp" />
+    <ClCompile Include="creature.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="exit.cpp" />
+    <ClCompile Include="friend.cpp" />
     <ClCompile Include="hole.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="wizard.cpp" />
     <ClCompile Include="world.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="room.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basilisk.h" />
+    <ClInclude Include="creature.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="exit.h" />
+    <ClInclude Include="friend.h" />
     <ClInclude Include="hole.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="mylist.h" />
     <ClInclude Include="mystring.h" />
     <ClInclude Include="myvector.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="wizard.h" />
     <ClInclude Include="world.h" />
     <ClInclude Include="room.h" />
   </ItemGroup>
