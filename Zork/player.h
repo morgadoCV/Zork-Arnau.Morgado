@@ -10,7 +10,7 @@ class Player:public Creature
 
 public:
 	int situation;
-	mVector<bool> inventory;
+	mList<Entity*>equip;
 	mVector<bool> equipement;
 	
 

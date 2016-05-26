@@ -102,7 +102,8 @@ void World::createWorld()
 
 	//hole
 
-	hole.push_back(new Entity("There is a hole", "Seems like you can put thinks into it",0));
+	//34
+	entities.push_back(new Entity("There is a hole", "Seems like you can put thinks into it",0));
 	
 
 }
@@ -234,6 +235,7 @@ int World::checkImput()
 					{
 						printf("You have picked the instakill book.\n");
 						player->list.push_back(i->data);
+						player->modifyattack(500);
 						((Room*)entities[player->situation])->list.erase(i);
 						return 0;
 					}
@@ -265,6 +267,7 @@ int World::checkImput()
 					{
 						printf("You have picked the layer.\n");
 						player->list.push_back(i->data);
+						player->modifydefense(300);
 						((Room*)entities[player->situation])->list.erase(i);
 						return 0;
 					}
@@ -490,6 +493,7 @@ int World::checkImput()
 					if (i != nullptr)
 					{
 						printf("You have picked the stun book.\n");
+						player->modifyattack(50);
 						player->list.push_back(i->data);
 						((Room*)entities[player->situation])->list.erase(i);
 						return 0;
@@ -515,7 +519,7 @@ int World::checkImput()
 			if (i->data->Get_Name() == "Wand")
 			{
 				printf("You have droped the wand.\n");
-				
+				player->modifyattack2(150);
 				((Room*)entities[player->situation])->list.push_back(i->data);
 				player->list.erase(i);
 				return 0;
@@ -533,6 +537,7 @@ int World::checkImput()
 				printf("You have droped the isntakill book.\n");
 				((Room*)entities[player->situation])->list.push_back(i->data);
 				player->list.erase(i);
+				player->modifyattack2(500);
 				
 				return 0;
 			}
@@ -549,6 +554,7 @@ int World::checkImput()
 				printf("You have droped the layer.\n");
 				((Room*)entities[player->situation])->list.push_back(i->data);
 				player->list.erase(i);
+				player->modifydefense2(300);
 				
 				return 0;
 			}
@@ -643,6 +649,7 @@ int World::checkImput()
 			{
 				printf("You have droped the stun book.\n");
 				((Room*)entities[player->situation])->list.push_back(i->data);
+				player->modifyattack2(50);
 				player->list.erase(i);
 				
 				return 0;
@@ -662,134 +669,154 @@ int World::checkImput()
 	
 	else if (comand == "look wand")
 	{ 
-		if (player->inventory[0] || ((Room*)entities[player->situation])->room_items[0])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[23])->Get_Description());
+			if (i->data->Get_Name() == "Wand"){ printf("%s\n", i->data->Get_Description()); }	
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Wand"){ printf("%s\n", j->data->Get_Description()); }
 		}
-		return 0;
 	}
 	else if (comand == "look instakill book")
 	{
-		if (player->inventory[1] || ((Room*)entities[player->situation])->room_items[1])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[24])->Get_Description());
-			
+			if (i->data->Get_Name() == "Instakill Book"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Instakill Book"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look layer")
 	{
-		if (player->inventory[2] || ((Room*)entities[player->situation])->room_items[2])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[25])->Get_Description());
+			if (i->data->Get_Name() == "Layer"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Layer"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look time turner")
 	{
-		if (player->inventory[3] || ((Room*)entities[player->situation])->room_items[3])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[26])->Get_Description());
+			if (i->data->Get_Name() == "Time Turner"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Time Turner"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look keys")
 	{
-		if (player->inventory[4] || ((Room*)entities[player->situation])->room_items[4])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[27])->Get_Description());
+			if (i->data->Get_Name() == "Keys"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Keys"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
-	else if (comand == "look lantern")
+	else if (comand == "look lamp")
 	{
-		if (player->inventory[5] || ((Room*)entities[player->situation])->room_items[5])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[28])->Get_Description());
+			if (i->data->Get_Name() == "Lamp"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Lamp"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look sword")
 	{
-		if (player->inventory[6] || ((Room*)entities[player->situation])->room_items[6])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[29])->Get_Description());
+			if (i->data->Get_Name() == "Instakill Book"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Instakill Book"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look photo")
 	{
-		if (player->inventory[7] || ((Room*)entities[player->situation])->room_items[7])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[30])->Get_Description());
+			if (i->data->Get_Name() == "Photo"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Photo"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look broom")
 	{
-		if (player->inventory[8] || ((Room*)entities[player->situation])->room_items[8])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[31])->Get_Description());
+			if (i->data->Get_Name() == "Broom"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Broom"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look heavy layer")
 	{
-		if (player->inventory[9] || ((Room*)entities[player->situation])->room_items[9])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[32])->Get_Description());
+			if (i->data->Get_Name() == "Heavy Layer"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Heavy Layer"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
 	else if (comand == "look stun book")
 	{
-		if (player->inventory[10] || ((Room*)entities[player->situation])->room_items[10])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			printf("\n%s\n", ((Item*)entities[33])->Get_Description());
+			if (i->data->Get_Name() == "Stun Book"){ printf("%s\n", i->data->Get_Description()); }
 		}
-		else
+		mList<Entity*>::mNode* j = ((Room*)entities[player->situation])->list.first;
+		for (; j != nullptr; j = j->next)
 		{
-			printf("You can't see this item.");
+			if (j->data->Get_Name() == "Stun Book"){ printf("%s\n", j->data->Get_Description()); }
 		}
 		return 0;
 	}
@@ -801,248 +828,328 @@ int World::checkImput()
 	}
 	else if (comand == "equip wand")
 	{
-		if (player->inventory[0])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->equipement[0] = true;
-			player->inventory[0] = false;
-			player->modifyattack(50);
-			printf("Wand equip.\n");
+			if (i->data->Get_Name() == "Wand")
+			{ 
+				printf("Wand equip.\n");
+				player->equip.push_back(i->data);
+				player->list.erase(i);
+				return 0;
+			}
 		}
-		else{ printf("There is not a wand on your inventory.\n"); }
-		return 0;
+		
 	}
 	else if (comand == "equip sword")
 	{
-		if (player->inventory[6])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->equipement[1] = true;
-			player->inventory[6] = false;
-			player->modifyattack(15);
-			printf("Sword equip.\n");
+			if (i->data->Get_Name() == "Sword")
+			{
+				printf("Sword equip.\n");
+				player->equip.push_back(i->data);
+				player->list.erase(i);
+			}
 		}
-		else{ printf("There is not a wand on your inventory.\n"); }
-		return 0;
 	}
 	else if (comand == "equip layer")
 	{
-		if (player->inventory[2])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->equipement[2] = true;
-			player->inventory[2] = false;
-			player->modifydefense(300);
-			printf("Layer equip.\n");
+			if (i->data->Get_Name() == "Layer")
+			{
+				printf("Layer equip.\n");
+				player->equip.push_back(i->data);
+				player->list.erase(i);
+				return 0;
+			}
 		}
-		else{ printf("There is not a layer on your inventory.\n"); }
-		return 0;
 	}
 	else if (comand == "unequip wand")
 	{
-		if (player->equipement[0])
+		mList<Entity*>::mNode* i = player->equip.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[0] = true;
-			player->equipement[0] = false;
-			player->modifyattack2(50);
-			printf("Wand unequip.\n");
+			if (i->data->Get_Name() == "Wand")
+			{
+				printf("Wand unequip.\n");
+				player->list.push_back(i->data);
+				player->equip.erase(i);
+				return 0;
+			}
 		}
-		else{ printf("Wand not equip.\n"); }
-		return 0;
 	}
 	else if (comand == "unequip sword")
 	{
-		if (player->equipement[1])
+		mList<Entity*>::mNode* i = player->equip.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->equipement[1] = false;
-			player->inventory[6] = true;
-			player->modifyattack2(15);
-			printf("Sword unequip.\n");
+			if (i->data->Get_Name() == "Sword")
+			{
+				printf("Sword unequip.\n");
+				player->list.push_back(i->data);
+				player->equip.erase(i);
+				return 0;
+			}
 		}
-		else{ printf("Sword not equip.\n"); }
-		return 0;
 	}
 	else if (comand == "unequip layer")
 	{
-		if (player->equipement[2])
+		mList<Entity*>::mNode* i = player->equip.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->equipement[2] = false;
-			player->inventory[2] = true;
-			player->modifydefense2(300);
-			printf("Layer unequip.\n");
+			if (i->data->Get_Name() == "Layer")
+			{
+				printf("Layer equip.\n");
+				player->list.push_back(i->data);
+				player->equip.erase(i);
+				return 0;
+			}
 		}
-	   else{ printf("Layer not equip.\n"); }
-	   return 0;
 	}
 	else if (comand == "put wand into hole")
 	{
-		if (player->situation == 1 && player->inventory[0])
+		
+		if (player->situation == 1)
 		{
-			player->inventory[0] = false;
-			hole[0]->inv[0] = true;
-		}
-		return 0;
+			mList<Entity*>::mNode* i = player->list.first;
+			for (; i!=nullptr; i = i->next)
+			{
+				if (i->data->Get_Name() == "Wand")
+				{
+					entities[34]->list.push_back(i->data);
+					player->list.erase(i);
+					player->modifyattack2(150);
+					printf("PLOP\n");
+					return 0;
+				}
+			}
+			
 	}
 	else if (comand == "put instakill book into hole")
 	{
-		if (player->situation == 1 && player->inventory[1])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[1] = false;
-			hole[0]->inv[1] = true;
+			if (i->data->Get_Name() == "Instakill Book")
+			{
+				entities[34]->list.push_back(i->data);
+				player->list.erase(i);
+				player->modifyattack2(500);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "put layer into hole")
 	{
-		if (player->situation == 1 && player->inventory[2])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[2] = false;
-			hole[0]->inv[2] = true;
+			if (i->data->Get_Name() == "Layer")
+			{
+				entities[34]->list.push_back(i->data);
+				player->list.erase(i);
+				player->modifydefense2(300);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "put keys into hole")
 	{
-		if (player->situation == 1 && player->inventory[4])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[4] = false;
-			hole[0]->inv[4] = true;
+			if (i->data->Get_Name() == "Keys")
+			{
+				entities[34]->list.push_back(i->data);
+				player->list.erase(i);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "put lantern into hole")
 	{
-		if (player->situation == 1 && player->inventory[5])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[5] = false;
-			hole[0]->inv[5] = true;
+			if (i->data->Get_Name() == "Lamp")
+			{
+				entities[34]->list.push_back(i->data);
+				player->list.erase(i);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "put sword into hole")
 	{
-		if (player->situation == 1 && player->inventory[6])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[6] = false;
-			hole[0]->inv[6] = true;
+			if (i->data->Get_Name() == "Sword")
+			{
+				entities[34]->list.push_back(i->data);
+				player->list.erase(i);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "put photo into hole")
 	{
-		if (player->situation == 1 && player->inventory[7])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[7] = false;
-			hole[0]->inv[7] = true;
+			if (i->data->Get_Name() == "Photo")
+			{
+				entities[34]->list.push_back(i->data);
+				player->list.erase(i);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "put stun book into hole")
 	{
-		if (player->situation == 1 && player->inventory[10])
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			player->inventory[10] = false;
-			hole[0]->inv[10] = true;
+			if (i->data->Get_Name() == "Stun Book")
+			{
+				entities[34]->list.push_back(i->data);
+				player->modifyattack2(50);
+				player->list.erase(i);
+				printf("PLOP\n");
+				return 0;
+			}
 		}
-		return 0;
 	}
 	else if (comand == "get wand from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[0])
+			if (i->data->Get_Name() == "Wand")
 			{
-				player->inventory[0] = true;
-				hole[0]->inv[0] = false;
+				player->list.push_back(i->data);
+				player->modifyattack(150);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get instakill book from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[1])
+			if (i->data->Get_Name() == "Instakill Book")
 			{
-				player->inventory[1] = true;
-				hole[0]->inv[1] = false;
+				player->list.push_back(i->data);
+				player->modifyattack(500);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get layer from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[2])
+			if (i->data->Get_Name() == "Layer")
 			{
-				player->inventory[2] = true;
-				hole[0]->inv[2] = false;
+				player->list.push_back(i->data);
+				player->modifydefense2(300);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get keys from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[4])
+			if (i->data->Get_Name() == "Keys")
 			{
-				player->inventory[4] = true;
-				hole[0]->inv[4] = false;
+				player->list.push_back(i->data);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get lantern from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[5])
+			if (i->data->Get_Name() == "Lamp")
 			{
-				player->inventory[5] = true;
-				hole[0]->inv[5] = false;
+				player->list.push_back(i->data);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get sword from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[6])
+			if (i->data->Get_Name() == "Sword")
 			{
-				player->inventory[6] = true;
-				hole[0]->inv[6] = false;
+				player->list.push_back(i->data);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get photo from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[7])
+			if (i->data->Get_Name() == "Photo")
 			{
-				player->inventory[7] = true;
-				hole[0]->inv[7] = false;
+				player->list.push_back(i->data);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "get stun book from hole")
 	{
-		if (player->situation == 1)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr; i = i->next)
 		{
-			if (hole[0]->inv[10])
+			if (i->data->Get_Name() == "Stun Book")
 			{
-				player->inventory[10] = true;
-				hole[0]->inv[10] = false;
+				player->list.push_back(i->data);
+				entities[34]->list.erase(i);
+				printf("PLOP\n");
+				return 0;
 			}
 		}
-		return 0;
 	}
 	else if (comand == "hole")
 	{
 		printf("\nHole inv:\n");
-		for (int i = 0; i < 11; i++)
+		mList<Entity*>::mNode* i = entities[34]->list.first;
+		for (; i != nullptr;i->next)
 		{
 			if (hole[0]->inv[i])
 			{
