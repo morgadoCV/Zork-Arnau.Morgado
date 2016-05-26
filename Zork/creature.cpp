@@ -35,3 +35,5 @@ void Creature::modifydefense2(int def)
 {
 	defense -= def;
 }
+
+Creature::~Creature(){}

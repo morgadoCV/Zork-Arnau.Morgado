@@ -1,6 +1,7 @@
 #ifndef _CREATURE_
 #define _CREATURE_
 #include "entity.h"
+#include"creature.h"
 
 class Creature :public Entity
 {

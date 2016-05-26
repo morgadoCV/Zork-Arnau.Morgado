@@ -9,4 +9,5 @@ public:
 	~Basilisk();
 };
 
+
 #endif //_BASILISK_
