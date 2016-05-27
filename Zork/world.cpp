@@ -664,6 +664,7 @@ int World::checkImput()
 		{
 			printf("%s\n", i->data->Get_Name());
 		}
+		return 0;
 	
 	}
 	
@@ -916,7 +917,7 @@ int World::checkImput()
 		if (player->situation == 1)
 		{
 			mList<Entity*>::mNode* i = player->list.first;
-			for (; i!=nullptr; i = i->next)
+			for (; i != nullptr; i = i->next)
 			{
 				if (i->data->Get_Name() == "Wand")
 				{
@@ -927,7 +928,8 @@ int World::checkImput()
 					return 0;
 				}
 			}
-			
+
+		}
 	}
 	else if (comand == "put instakill book into hole")
 	{
@@ -1151,12 +1153,10 @@ int World::checkImput()
 		mList<Entity*>::mNode* i = entities[34]->list.first;
 		for (; i != nullptr;i->next)
 		{
-			if (hole[0]->inv[i])
-			{
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
-			}
+			printf("%s\n", i->data->Get_Name());
+			return 0;
 		}
-		return 0;
+		
 	}
 	
 	else
@@ -1364,7 +1364,7 @@ void World::moveWest()
 	{
 		player->situation = ((Exit*)entities[13])->destiny2;
 		printf("\n%s\n", ((Room*)entities[1])->Get_Name());
-		printf("\nThere is a hole. %s\n", hole[0]->Get_Description());
+		printf("\nThere is a hole. %s\n", entities[34]->Get_Description());
 		for (int i = 0; i < 11; i++){
 			if (((Room*)entities[1])->room_items[i])
 				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
