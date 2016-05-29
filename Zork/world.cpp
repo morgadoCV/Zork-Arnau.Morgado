@@ -9,6 +9,9 @@
 #include"mystring.h"
 #include"item.h"
 #include"hole.h"
+#include"basilisk.h"
+#include"friend.h"
+#include"wizard.h"
 using namespace std;
 
 
@@ -87,23 +90,16 @@ void World::createWorld()
 	/*33*/entities.push_back(new Item("Stun Book", "Just read it."));
 	((Room*)entities[7])->list.push_back(entities[33]);
 
-	//giving items to rooms
-	((Room*)entities[1])->set_items(8, -1);
-	((Room*)entities[2])->set_items(-1, -1);
-	((Room*)entities[3])->set_items(5, -1);
-	((Room*)entities[4])->set_items(9, 0);
-	((Room*)entities[5])->set_items(2, -1);
-	((Room*)entities[6])->set_items(-1, -1);
-	((Room*)entities[7])->set_items(10, -1);
-	((Room*)entities[8])->set_items(3, -1);
-	((Room*)entities[9])->set_items(1, 7);
-	((Room*)entities[10])->set_items(4, 6);
-	((Room*)entities[11])->set_items(-1, -1);
 
 	//hole
 
 	//34
 	entities.push_back(new Entity("There is a hole", "Seems like you can put thinks into it",0));
+
+	//NPCs
+	/*35*/entities.push_back(new Basilisk("Basilisk", "A big snake is staring at you.", 50, 3000));
+	/*36*/entities.push_back(new Friend("Friend", "Maybe he can give you something that help you", 0, 0));
+	/*37*/entities.push_back(new Wizard("Dark Wizard", "Is that him? What did he do to you last night?", 100, 500));
 	
 
 }
