@@ -74,7 +74,6 @@ void World::createWorld()
 	/*25*/entities.push_back(new Item("Layer", "Maybe you can equip it."));
 	((Room*)entities[5])->list.push_back(entities[25]);
 	/*26*/entities.push_back(new Item("Time Turner", "It gives you the hability to teleport throw rooms you have been before."));
-	((Room*)entities[8])->list.push_back(entities[26]);
 	/*27*/entities.push_back(new Item("Keys", "Just some keys."));
 	((Room*)entities[10])->list.push_back(entities[27]);
 	/*28*/entities.push_back(new Item("Lamp", "It will show you the light."));
@@ -98,7 +97,7 @@ void World::createWorld()
 
 	//NPCs
 	/*35*/entities.push_back(new Basilisk("Basilisk", "A big snake is staring at you.", 50, 3000));
-	/*36*/entities.push_back(new Friend("Friend", "Maybe he can give you something that help you", 0, 0));
+	/*36*/entities.push_back(new Friend("Friend", "Maybe he can give you something that help you", 0, 0,"Hi dude, how are you?, I just found something at the schoo'ls hall. Do you want it?\n","Ok, cya!\n",6));
 	/*37*/entities.push_back(new Wizard("Dark Wizard", "Is that him? What did he do to you last night?", 100, 500));
 	
 
@@ -1154,6 +1153,32 @@ int World::checkImput()
 		}
 		
 	}
+	else if (comand == "talk friend")
+	{
+		if (((Friend*)entities[36])->friendposition() == player->situation)
+		{
+			printf("%s\n", ((Friend*)entities[36])->talk(0));
+			World talk;
+			char str[25];
+			mString hey;
+			getinput();
+			hey = input;
+			if (hey == "yes" || hey == "yeah" || hey == "y")
+			{
+				printf("You recived a Time Turner, write use turner <room> to tp.\n");
+				player->list.push_back(entities[26]);
+			}
+			if (hey == "no" || hey == "nope" || hey == "n")
+			{
+				printf("%s\n", ((Friend*)entities[36])->talk(1));
+			}
+		}
+		else
+		{
+			printf("Who is friend?\n");
+		}
+		return 0;
+	}
 	
 	else
 	{
@@ -1170,9 +1195,9 @@ void World::moveNorth(){
 	{
 		player->situation = ((Exit*)entities[13])->destiny3;
 		printf("\n%s\n", ((Room*)entities[7])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[7])->room_items[i]==true)
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[7]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1180,9 +1205,9 @@ void World::moveNorth(){
 	{
 		player->situation = ((Exit*)entities[14])->destiny3;
 		printf("\n%s\n", ((Room*)entities[2])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[2])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[2]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1190,9 +1215,9 @@ void World::moveNorth(){
 	{
 		player->situation = ((Exit*)entities[16])->destiny3;
 		printf("%s\n", ((Room*)entities[3])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[3])->room_items[i])
-				printf("%s\n", ((Item*)entities[i + 23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[3]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1200,9 +1225,9 @@ void World::moveNorth(){
 	{
 		player->situation = ((Exit*)entities[17])->destiny3;
 		printf("\n%s\n", ((Room*)entities[5])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[5])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[5]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1210,9 +1235,9 @@ void World::moveNorth(){
 	{
 		player->situation = ((Exit*)entities[20])->destiny3;
 		printf("\n%s\n", ((Room*)entities[8])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[8])->room_items[i])
-				printf("%s\n", ((Item*)entities[i + 23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[8]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1229,9 +1254,9 @@ void World::moveSouth()
 	{
 		player->situation = ((Exit*)entities[13])->destiny4;
 		printf("\n%s\n", ((Room*)entities[3])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[3])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[3]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1239,9 +1264,9 @@ void World::moveSouth()
 	{
 		player->situation = ((Exit*)entities[18])->destiny4;
 		printf("\n%s\n", ((Room*)entities[2])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[2])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[2]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1249,9 +1274,9 @@ void World::moveSouth()
 	{
 		player->situation = ((Exit*)entities[14])->destiny4;;
 		printf("\n%s\n", ((Room*)entities[5])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[5])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[5]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1259,9 +1284,9 @@ void World::moveSouth()
 	{
 		player->situation = ((Exit*)entities[16])->destiny4;
 		printf("\n%s\n", ((Room*)entities[6])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[6])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[6]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1270,9 +1295,9 @@ void World::moveSouth()
 		if (((Room*)entities[8])->openfountain == 1){
 			player->situation = ((Exit*)entities[19])->destiny4;
 			printf("\n%s\n", ((Room*)entities[9])->Get_Name());
-			for (int i = 0; i < 11; i++){
-				if (((Room*)entities[9])->room_items[i])
-					printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+			mList<Entity*>::mNode* i = entities[9]->list.first;
+			for (; i != nullptr; i = i->next){
+				printf("%s\n", i->data->Get_Name());
 			}
 			return;
 		}
@@ -1295,9 +1320,9 @@ void World::moveEast()
 	{
 		player->situation = ((Exit*)entities[12])->destiny;
 		printf("\n%s\n", ((Room*)entities[2])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[2])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[2]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1307,9 +1332,9 @@ void World::moveEast()
 		{
 			player->situation = ((Exit*)entities[13])->destiny;
 			printf("\n%s\n", ((Room*)entities[4])->Get_Name());
-			for (int i = 0; i < 11; i++){
-				if (((Room*)entities[4])->room_items[i])
-					printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+			mList<Entity*>::mNode* i = entities[4]->list.first;
+			for (; i != nullptr; i = i->next){
+				printf("%s\n", i->data->Get_Name());
 			}
 			return;
 		}
@@ -1322,9 +1347,9 @@ void World::moveEast()
 	{
 		player->situation = ((Exit*)entities[15])->destiny;
 		printf("\n%s\n", ((Room*)entities[11])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[11])->room_items[i])
-				printf("%s\n", ((Item*)entities[i + 23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[11]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1332,9 +1357,9 @@ void World::moveEast()
 	{
 		player->situation = ((Exit*)entities[14])->destiny;
 		printf("\n%s\n", ((Room*)entities[8])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[8])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[8]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1342,9 +1367,9 @@ void World::moveEast()
 	{
 		player->situation = ((Exit*)entities[17])->destiny;
 		printf("\n%s\n", ((Room*)entities[10])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[10])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[10]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1361,9 +1386,9 @@ void World::moveWest()
 		player->situation = ((Exit*)entities[13])->destiny2;
 		printf("\n%s\n", ((Room*)entities[1])->Get_Name());
 		printf("\nThere is a hole. %s\n", entities[34]->Get_Description());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[1])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[1]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1373,9 +1398,9 @@ void World::moveWest()
 		{
 			player->situation = ((Exit*)entities[15])->destiny2;
 			printf("\n%s\n", ((Room*)entities[2])->Get_Name());
-			for (int i = 0; i < 11; i++){
-				if (((Room*)entities[2])->room_items[i])
-					printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+			mList<Entity*>::mNode* i = entities[2]->list.first;
+			for (; i != nullptr; i = i->next){
+				printf("%s\n", i->data->Get_Name());
 			}
 			return;
 		}
@@ -1389,9 +1414,9 @@ void World::moveWest()
 	{
 		player->situation = ((Exit*)entities[22])->destiny2;
 		printf("\n%s\n", ((Room*)entities[4])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[4])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[4]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1399,9 +1424,9 @@ void World::moveWest()
 	{
 		player->situation = ((Exit*)entities[19])->destiny2;
 		printf("\n%s\n", ((Room*)entities[3])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[3])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[3]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}
@@ -1409,9 +1434,9 @@ void World::moveWest()
 	{
 		player->situation = ((Exit*)entities[21])->destiny2;
 		printf("\n%s\n", ((Room*)entities[6])->Get_Name());
-		for (int i = 0; i < 11; i++){
-			if (((Room*)entities[6])->room_items[i])
-				printf("%s\n", ((Item*)entities[i+23])->Get_Name());
+		mList<Entity*>::mNode* i = entities[6]->list.first;
+		for (; i != nullptr; i = i->next){
+			printf("%s\n", i->data->Get_Name());
 		}
 		return;
 	}

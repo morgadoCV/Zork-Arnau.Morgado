@@ -1,8 +1,28 @@
 #include"friend.h"
 #include"creature.h"
 
-Friend::Friend(const char* str1, const char* str2, int attack, int defense) :Creature(str1,str2,attack,defense)
+Friend::Friend(const char* str1, const char* str2, int attack, int defense,const char* talk1, const char* talk2, int position) :Creature(str1,str2,attack,defense)
 {
-
+	this->talk1 = talk1;
+	this->talk2 = talk2;
+	this->position = position;
 }
 Friend::~Friend(){}
+
+int Friend::friendposition() const
+{
+	return position;
+}
+const char* Friend::talk(int temp) const
+{
+	switch (temp)
+	{
+	case 0:
+		return talk1;
+	case 1:
+		return talk2;
+	}
+	
+
+	return "error";
+}
