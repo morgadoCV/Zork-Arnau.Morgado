@@ -11,7 +11,7 @@ class Player:public Creature
 public:
 	int situation;
 	mList<Entity*>equip;
-	
+	int coins = 0;
 	
 
 public:

@@ -12,6 +12,7 @@
 #include"basilisk.h"
 #include"friend.h"
 #include"wizard.h"
+#include <Windows.h>
 using namespace std;
 
 
@@ -46,7 +47,7 @@ void World::createWorld()
 	/*5*//*4*/entities.push_back(new Room("1st floor.\n", "There is a layer on the floor. The only way you can go is south, straight to the low level.\n"));
 	/*6*//*5*/entities.push_back(new Room("Low Level.\n", "You can only go east, to the transformation room.\n"));
 	/*7*//*6*/entities.push_back(new Room("Room of requirements.\n", "Wait..Where are you? You can see a book over a table."));
-	/*8*//*7*/entities.push_back(new Room("Bathroom\n", "You found your friend Arnau. There is an old fountain with what seem snakes \narround it.\n"));
+	/*8*//*7*/entities.push_back(new Room("Bathroom\n", "There is an old fountain with what seem snakes \narround it.\n"));
 	/*9*//*8*/entities.push_back(new Room("Chamber of Secrets.\n", "There is a BASILISK.There is also a book on the floor.\n"));
 	/*10*//*9*/entities.push_back(new Room("Transformation room.\n", "There is a sword next to the table.\n"));
 	/*11*//*10*/entities.push_back(new Room("Dark wizard room.\n", "Is there a room here? Since when? A wizard is staring at you with his wand on \nthe right hand.\n"));
@@ -1169,7 +1170,7 @@ int World::checkImput()
 				if (((Friend*)entities[36])->list.empty()){ printf("Already given it to you bro!\n"); }
 				else
 				{
-					printf("You recived a Time Turner, write use turner <room> to tp.\n");
+					printf("You recived a Time Turner.\n");
 					player->list.push_back(entities[26]);
 					((Friend*)entities[36])->list.clear();
 				}
@@ -1183,6 +1184,7 @@ int World::checkImput()
 		{
 			printf("Who is friend?\n");
 		}
+		((Friend*)entities[36])->changetalking();
 		return 0;
 	}
 	else if (comand == "attack basilisk")
@@ -1218,6 +1220,15 @@ int World::checkImput()
 		if (player->situation == 9)
 		{
 			int ret=attack(2);
+			mList<Entity*>::mNode* i = player->list.first;
+			for (; i != nullptr; i = i->next)
+			{
+				if (i->data->Get_Name() == "Stun Book")
+				{
+					((Room*)entities[10])->list.push_back(i->data);
+					player->list.erase(i);
+				}
+			}
 			if (ret == 1){ return 1; }
 			return 0;
 		}
@@ -1228,6 +1239,15 @@ int World::checkImput()
 		if (player->situation == 11)
 		{
 			int ret = attack(5);
+			mList<Entity*>::mNode* i = player->list.first;
+			for (; i != nullptr; i = i->next)
+			{
+				if (i->data->Get_Name() == "Stun Book")
+				{
+					((Room*)entities[10])->list.push_back(i->data);
+					player->list.erase(i);
+				}
+			}
 			if (ret == 1){ return 1; }
 			if (ret == 2){ return 2; }
 			return 0;
@@ -1263,6 +1283,125 @@ int World::checkImput()
 			}
 		}
 		else{ printf("You mad bro?\n"); }
+	}
+	else if (comand=="buy friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		printf("Everything costs 100 coins.\n");
+		mList<Entity*>::mNode* i = ((Friend*)entities[36])->list.first;
+		for (; i != nullptr; i = i->next)
+		{
+			printf("%s\n", i->data->Get_Name());
+		}
+		((Friend*)entities[36])->changebuying();
+	}
+	else if (comand == "sell keys to friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
+		{
+			if (i->data->Get_Name() == "Keys")
+			{
+				printf("Your friend gave you 100 coins for the keys.\n");
+				player->coins = player->coins + 100;
+				((Friend*)entities[36])->list.push_back(i->data);
+				player->list.erase(i);
+			}
+		}
+		((Friend*)entities[36])->changebuying();
+	}
+	else if (comand == "sell lamp to friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
+		{
+			if (i->data->Get_Name() == "Lamp")
+			{
+				printf("Your friend gave you 100 coins for the Lamp.\n");
+				player->coins = player->coins + 100;
+				((Friend*)entities[36])->list.push_back(i->data);
+				player->list.erase(i);
+			}
+		}
+		((Friend*)entities[36])->changebuying();
+	}
+	else if (comand == "sell photo to friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		mList<Entity*>::mNode* i = player->list.first;
+		for (; i != nullptr; i = i->next)
+		{
+			if (i->data->Get_Name() == "Photo")
+			{
+				printf("Your friend gave you 100 coins for the photo.\n");
+				player->coins = player->coins + 100;
+				((Friend*)entities[36])->list.push_back(i->data);
+				player->list.erase(i);
+			}
+		}
+		((Friend*)entities[36])->changebuying();
+	}
+	else if (comand == "buy keys from friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		if (player->coins >= 100)
+		{
+			mList<Entity*>::mNode* i = ((Friend*)entities[36])->list.first;
+			for (; i != nullptr; i = i->next)
+			{
+				if (i->data->Get_Name() == "Keys")
+				{
+					printf("You payed 100 coins for the keys.\n");
+					player->coins = player->coins - 100;
+					player->list.push_back(i->data);
+					((Friend*)entities[36])->list.erase(i);
+				}
+			}
+		}
+		else{ printf("You don't have money dude!\n"); }
+		((Friend*)entities[36])->changebuying();
+	}
+	else if (comand == "buy lamp from friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		if (player->coins >= 100)
+		{
+			mList<Entity*>::mNode* i = ((Friend*)entities[36])->list.first;
+			for (; i != nullptr; i = i->next)
+			{
+				if (i->data->Get_Name() == "Lamp")
+				{
+					printf("You payed 100 coins for the lamp.\n");
+					player->coins = player->coins - 100;
+					player->list.push_back(i->data);
+					((Friend*)entities[36])->list.erase(i);
+				}
+			}
+		}
+		else{ printf("You don't have money dude!\n"); }
+		((Friend*)entities[36])->changebuying();
+	}
+	else if (comand == "buy photo from friend")
+	{
+		((Friend*)entities[36])->changebuying();
+		if (player->coins >= 100)
+		{
+			mList<Entity*>::mNode* i = ((Friend*)entities[36])->list.first;
+			for (; i != nullptr; i = i->next)
+			{
+				if (i->data->Get_Name() == "Photo")
+				{
+					printf("You payed 100 coins for the photo.\n");
+					player->coins = player->coins - 100;
+					player->list.push_back(i->data);
+					((Friend*)entities[36])->list.erase(i);
+				}
+			}
+		}
+		else{ printf("You don't have money dude!\n"); }
+		((Friend*)entities[36])->changebuying();
 	}
 	
 	else
@@ -1380,6 +1519,7 @@ void World::moveSouth()
 		if (((Room*)entities[8])->openfountain == 1){
 			player->situation = ((Exit*)entities[19])->destiny4;
 			printf("\n%s\n", ((Room*)entities[9])->Get_Name());
+			printf("\n%s\n", ((Room*)entities[9])->Get_Description());
 			mList<Entity*>::mNode* i = entities[9]->list.first;
 			for (; i != nullptr; i = i->next){
 				printf("%s\n", i->data->Get_Name());
@@ -1432,6 +1572,7 @@ void World::moveEast()
 	{
 		player->situation = ((Exit*)entities[15])->destiny;
 		printf("\n%s\n", ((Room*)entities[11])->Get_Name());
+		printf("\n%s\n", ((Room*)entities[11])->Get_Description());
 		mList<Entity*>::mNode* i = entities[11]->list.first;
 		for (; i != nullptr; i = i->next){
 			printf("%s\n", i->data->Get_Name());
@@ -1567,7 +1708,10 @@ void World::giveHelp() const
 	printf("\nUse command 'equip/unequip<item> to equip and unequip items.\n");
 	printf("\nUse command 'hole' to look into the hole.\n");
 	printf("\nUse command 'inv/inventory/i' to look into your inventory.\n");
-	printf("\nUse command 'stats' to see your stats.\n\n");
+	printf("\nUse command 'stats' to see your stats.\n");
+	printf("\nUse command 'buy/sell'+keys/lamp/photo\n");
+	printf("\nUse command 'stun/instakill/attack'+basilisk/wizard.\n");
+	printf("\nUse command 'talk' to talk with your friend.\n\n");
 }
 
 void World::openDoor()

@@ -29,7 +29,7 @@ int main()
 	while (exit == 1)
 	{
 		tiime = GetTickCount();
-		if (f.istalking() == false && tiime >= (move + 5555))
+		if (f.isbuying()==false && f.istalking() == false && tiime >= (move + 5555))
 		{
 			move = tiime;
 			int room = rand() % 10+1;
@@ -44,7 +44,7 @@ int main()
 		}
 		
 	}
-	printf("\nYou have quit.\n");
+	
 	
 
 

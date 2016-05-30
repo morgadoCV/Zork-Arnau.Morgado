@@ -31,14 +31,27 @@ const char* Friend::talk(int temp) const
 bool Friend::istalking() const
 {
 	return talking;
+	
 }
 
 void Friend::changetalking()
 {
-	talking = true;
+	if (talking == false){ talking = true; }
+	if (talking){ talking = false; }
 }
 
 void Friend::changeposition(int room)
 {
 	position = room;
+}
+
+bool Friend::isbuying() const
+{
+	return buying;
+}
+void Friend::changebuying()
+{
+	if (buying == false){ buying = true; }
+	if (buying){ buying = false; }
+	
 }

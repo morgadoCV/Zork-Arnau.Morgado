@@ -9,6 +9,7 @@ private:
 	const char* talk2;
 	int position;
 	bool talking = false;
+	bool buying=false;
 public:
 	Friend(const char* str1, const char* str2, int attack, int defense, const char* talk1, const char* talk2, int position);
 	Friend();
@@ -18,6 +19,8 @@ public:
 	const char* talk(int temp) const;
 	bool istalking() const;
 	void changetalking();
+	void changebuying();
+	bool isbuying() const;
 	
 
 };
