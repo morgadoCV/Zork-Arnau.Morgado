@@ -7,6 +7,7 @@ Friend::Friend(const char* str1, const char* str2, int attack, int defense,const
 	this->talk2 = talk2;
 	this->position = position;
 }
+Friend::Friend(){}
 Friend::~Friend(){}
 
 int Friend::friendposition() const
@@ -25,4 +26,19 @@ const char* Friend::talk(int temp) const
 	
 
 	return "error";
+}
+
+bool Friend::istalking() const
+{
+	return talking;
+}
+
+void Friend::changetalking()
+{
+	talking = true;
+}
+
+void Friend::changeposition(int room)
+{
+	position = room;
 }

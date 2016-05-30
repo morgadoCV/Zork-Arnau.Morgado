@@ -5,6 +5,7 @@ Creature::Creature(const char* str1, const char* str2, int at, int def) :Entity(
 	attack = at;
 	defense = def;
 }
+Creature::Creature(){}
 
 void Creature::modifyattack(int at)
 {

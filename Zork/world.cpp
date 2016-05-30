@@ -98,6 +98,7 @@ void World::createWorld()
 	//NPCs
 	/*35*/entities.push_back(new Basilisk("Basilisk", "A big snake is staring at you.", 50, 3000));
 	/*36*/entities.push_back(new Friend("Friend", "Maybe he can give you something that help you", 0, 0,"Hi dude, how are you?, I just found something at the schoo'ls hall. Do you want it?\n","Ok, cya!\n",6));
+	((Friend*)entities[36])->list.push_back(entities[26]);
 	/*37*/entities.push_back(new Wizard("Dark Wizard", "Is that him? What did he do to you last night?", 100, 500));
 	
 
@@ -1157,6 +1158,7 @@ int World::checkImput()
 	{
 		if (((Friend*)entities[36])->friendposition() == player->situation)
 		{
+			((Friend*)entities[36])->changetalking();
 			printf("%s\n", ((Friend*)entities[36])->talk(0));
 			World talk;
 			char str[25];
@@ -1165,8 +1167,13 @@ int World::checkImput()
 			hey = input;
 			if (hey == "yes" || hey == "yeah" || hey == "y")
 			{
-				printf("You recived a Time Turner, write use turner <room> to tp.\n");
-				player->list.push_back(entities[26]);
+				if (((Friend*)entities[36])->list.empty()){ printf("Already given it to you bro!\n"); }
+				else
+				{
+					printf("You recived a Time Turner, write use turner <room> to tp.\n");
+					player->list.push_back(entities[26]);
+					((Friend*)entities[36])->list.clear();
+				}
 			}
 			if (hey == "no" || hey == "nope" || hey == "n")
 			{
@@ -1658,6 +1665,15 @@ void World::lookRoomsWest() const
 	else
 	{
 		printf("\nThere is a high wall you can't climb\n");
+	}
+}
+
+void World::friendmove(int room)
+{
+	((Friend*)entities[36])->changeposition(room);
+	if (((Friend*)entities[36])->friendposition() == player->situation)
+	{
+		printf("Your friend joined the room.\n");
 	}
 }
 

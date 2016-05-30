@@ -35,6 +35,7 @@ public:
 	void talkParsel();
 	int checkImput();
 	void getinput();
+	void friendmove(int room);
 	World(const char* str1, const char* str2);
 	~World();
 	World();

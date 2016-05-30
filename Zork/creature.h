@@ -9,6 +9,7 @@ private:
 	int attack, defense;
 public:
 	Creature(const char* str1,const char* str2,int attack, int defense);
+	Creature();
 	~Creature();
 	void modifybool(int a);
 	void modifyattack(int at);
