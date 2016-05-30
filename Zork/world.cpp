@@ -81,7 +81,6 @@ void World::createWorld()
 	/*29*/entities.push_back(new Item("Goddreic's Griffindor sword", "Some books say that it can kill magic creatures."));
 	((Room*)entities[10])->list.push_back(entities[29]);
 	/*30*/entities.push_back(new Item("Photo", "It is an old photo of you and your parents, what is it doing here?."));
-	((Room*)entities[9])->list.push_back(entities[30]);
 	/*31*/entities.push_back(new Item("Broom", "An old Broom, maybe you can fly with it, who knows?"));
 	((Room*)entities[1])->list.push_back(entities[31]);
 	/*32*/entities.push_back(new Item("Heavy Layer", "Maybe you can equip it."));
@@ -99,7 +98,7 @@ void World::createWorld()
 	/*35*/entities.push_back(new Basilisk("Basilisk", "A big snake is staring at you.", 50, 3000));
 	/*36*/entities.push_back(new Friend("Friend", "Maybe he can give you something that help you", 0, 0,"Hi dude, how are you?, I just found something at the schoo'ls hall. Do you want it?\n","Ok, cya!\n",6));
 	((Friend*)entities[36])->list.push_back(entities[26]);
-	/*37*/entities.push_back(new Wizard("Dark Wizard", "Is that him? What did he do to you last night?", 100, 500));
+	/*37*/entities.push_back(new Wizard("Dark Wizard", "Is that him? What did he do to you last night?", 100, 1000));
 	
 
 }
@@ -1186,6 +1185,85 @@ int World::checkImput()
 		}
 		return 0;
 	}
+	else if (comand == "attack basilisk")
+	{
+		if (player->situation == 9)
+		{
+			int ret=attack(1);
+			if (ret == 1){ return 1; }
+			return 0;
+		}
+		else{printf("You mad bro?\n");}
+		
+	}
+	else if (comand == "instakill basilisk")
+	{
+		if (player->situation == 9)
+		{
+			mList<Entity*>::mNode* i = player->list.first;
+			for (; i != nullptr; i=i->next)
+			{
+				if (i->data->Get_Name() == "Goddreic's Griffindor sword")
+				{
+					int ret=attack(3);
+					if (ret == 1){ return 1; }
+					return 0;
+				}
+			}
+		}
+		else{ printf("You mad bro?\n"); }
+	}
+	else if (comand == "stun basilisk")
+	{
+		if (player->situation == 9)
+		{
+			int ret=attack(2);
+			if (ret == 1){ return 1; }
+			return 0;
+		}
+		else{ printf("You mad bro?\n"); }
+	}
+	else if (comand == "stun wizard")
+	{
+		if (player->situation == 11)
+		{
+			int ret = attack(5);
+			if (ret == 1){ return 1; }
+			if (ret == 2){ return 2; }
+			return 0;
+		}
+		else{ printf("You mad bro?\n"); }
+	}
+	else if (comand == "attack wizard")
+	{
+		if (player->situation == 11)
+		{
+			int ret = attack(4);
+			if (ret == 1){ return 1; }
+			if (ret == 2){ return 2; }
+			return 0;
+		}
+		else{ printf("You mad bro?\n"); }
+	}
+	else if (comand == "instakill wizard")
+	{
+		if (player->situation == 11)
+		{
+			mList<Entity*>::mNode* i = player->list.first;
+			for (; i != nullptr; i=i->next)
+			{
+				if (i->data->Get_Name() == "Instakill Book")
+				{
+					int ret = attack(6);
+					if (ret == 1){ return 1; }
+					if (ret == 2){ return 2; }
+					return 0;
+				}
+
+			}
+		}
+		else{ printf("You mad bro?\n"); }
+	}
 	
 	else
 	{
@@ -1364,6 +1442,7 @@ void World::moveEast()
 	{
 		player->situation = ((Exit*)entities[14])->destiny;
 		printf("\n%s\n", ((Room*)entities[8])->Get_Name());
+		printf("\n%s\n", ((Room*)entities[8])->Get_Description());
 		mList<Entity*>::mNode* i = entities[8]->list.first;
 		for (; i != nullptr; i = i->next){
 			printf("%s\n", i->data->Get_Name());
@@ -1677,3 +1756,76 @@ void World::friendmove(int room)
 	}
 }
 
+int World::attack(int kind) const
+{
+	switch (kind)
+	{
+	case 1:
+		((Basilisk*)entities[35])->modifydefense2(player->giveattack());
+		printf("You hit the enemeny.\n");
+		player->modifydefense2(((Basilisk*)entities[35])->giveattack());
+		printf("The basilisk hit you and dealt 50 dmg.\n");
+		if (player->givedefense() == 0)
+		{
+			printf("The basilisk killed you.\n");
+			return 1;
+		}
+		return 0;
+	case 2:
+		((Basilisk*)entities[35])->modifydefense2(player->giveattack() + 50);
+		printf("You hit the enemeny.\n");
+		player->modifydefense2(((Basilisk*)entities[35])->giveattack());
+		printf("The basilisk hit you and dealt 50 dmg.\n");
+		if (player->givedefense() == 0)
+		{
+			printf("The basilisk killed you.\n");
+			return 1;
+		}
+		return 0;
+	case 3:
+		((Basilisk*)entities[35])->modifydefense2(((Basilisk*)entities[35])->givedefense());
+		printf("You killed the basilisk.\n");
+		printf("The basilisk droped your parents Photo.\n");
+		((Room*)entities[9])->list.push_back(entities[30]);
+		return 0;
+	case 4:
+		((Wizard*)entities[37])->modifydefense2(player->giveattack());
+		printf("You hit the enemeny.\n");
+		player->modifydefense2(((Wizard*)entities[37])->giveattack());
+		printf("The DarkWizard hit you and dealt 100 dmg.\n");
+		if (((Wizard*)entities[37])->givedefense() == 0)
+		{
+			printf("Congratulations, you have killed the wizard.\n");;
+			return 2;
+		}
+		if (player->givedefense() == 0)
+		{
+			printf("The Wizard killed you.\n");
+			return 1;
+		}
+		return 0;
+	case 5:
+		((Wizard*)entities[37])->modifydefense2(player->giveattack() + 50);
+		printf("You hit the enemeny.\n");
+		player->modifydefense2(((Wizard*)entities[37])->giveattack());
+		printf("The Wizard hit you and dealt 100 dmg.\n");
+		if (((Wizard*)entities[37])->givedefense() == 0)
+		{
+			printf("Congratulations, you have killed the wizard.\n");;
+			return 2;
+		}
+		if (player->givedefense() == 0)
+		{
+			printf("The DarkWizard killed you.\n");
+			return 1;
+		}
+		return 0;
+	case 6:
+		((Wizard*)entities[37])->modifydefense2(((Wizard*)entities[37])->givedefense());
+		printf("Congratulations, you have killed the wizard.\n");
+		return 2;
+	default:
+		return 5;
+	}
+	
+}

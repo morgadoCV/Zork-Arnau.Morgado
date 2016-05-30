@@ -18,6 +18,7 @@ public:
 	void modifydefense2(int def);
 	int giveattack();
 	int givedefense();
+	
 };
 
 

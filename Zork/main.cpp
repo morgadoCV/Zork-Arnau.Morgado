@@ -29,7 +29,7 @@ int main()
 	while (exit == 1)
 	{
 		tiime = GetTickCount();
-		if (f.istalking() == false && tiime >= (move + 1000))
+		if (f.istalking() == false && tiime >= (move + 5555))
 		{
 			move = tiime;
 			int room = rand() % 10+1;
@@ -39,7 +39,8 @@ int main()
 		{
 			flag = w.checkImput();
 			if (flag == 0){ continue; }
-			else{ exit = 0; }
+			else if (flag == 1){ printf("\nYou have quit.\n"); exit = 0; }
+			else if (flag == 2){ exit = 0; }
 		}
 		
 	}

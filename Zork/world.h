@@ -36,6 +36,7 @@ public:
 	int checkImput();
 	void getinput();
 	void friendmove(int room);
+	int attack(int kind) const;
 	World(const char* str1, const char* str2);
 	~World();
 	World();
