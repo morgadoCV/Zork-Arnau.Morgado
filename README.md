@@ -22,3 +22,7 @@ Use the commands:
 - "inv/i/inventory" 
 - "stats"
 - "hole"
+- "buy/sell"<photo,keys,lamp>
+- "attack*/intakill/stun"->if you have the books!
+- "talk friend"
+
